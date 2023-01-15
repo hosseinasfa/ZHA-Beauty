@@ -17,6 +17,7 @@ const passport = require('passport');
 module.exports = class Application{
     constructor() {
         this.setupExpress();
+        this.setMongoConnection();
         this.setConfig();
     }
 
@@ -25,6 +26,13 @@ module.exports = class Application{
         server.listen(3000 , () => console.log('Listening on port 3000...'));
     }
 
+
+    async setMongoConnection(){
+        mongoose.set('strictQuery', false);
+        await mongoose.connect('mongodb://127.0.0.1/ZHA-Beauty');
+    }
+
+    /* express config */
     setConfig() {
 
         app.use(express.static('public'));
@@ -37,8 +45,11 @@ module.exports = class Application{
         secret: 'ZHAsecretKey',
         resave: true,
         saveUninitialized: true,
-        storestore: mongoStore.create({ mongoUrl: 'mongodb://localhost/test-app' })
-        }))
+        store: mongoStore.create({ mongoUrl: 'mongodb://127.0.0.1/ZHA-Beauty' })
+        }));
+        
+        app.use(cookieParser('ZHAsecretKey'));
+        app.use(flash());
 
 
         app.get('/' , (req , res) => {
