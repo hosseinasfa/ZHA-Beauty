@@ -37,7 +37,7 @@ module.exports = class Application{
         secret: 'ZHAsecretKey',
         resave: true,
         saveUninitialized: true,
-        store
+        storestore: mongoStore.create({ mongoUrl: 'mongodb://localhost/test-app' })
         }))
 
 
