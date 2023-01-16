@@ -1,0 +1,217 @@
+﻿
+
+/*Fonts ---------------------------------------------------------------------------------------------------- */
+/*---------------------------------------------------------------------------------------------------- */
+
+@font-face {
+    font-family: 'btitr';
+    src: url('Fonts/Titr/BTitr.eot');
+    src: url('Fonts/Titr/BTitr.eot?#iefix') format('embedded-opentype'),
+         url('Fonts/Titr/BTitr.woff') format('woff'),
+         url('Fonts/Titr/BTitr.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: 'yekan';
+	src: url('Fonts/Yekan/BYekan.eot?-wwn5ej');
+	src: url('Fonts/Yekan/BYekan.eot?#iefix-wwn5ej') format('embedded-opentype'),
+	url('Fonts/Yekan/BYekan.woff?-wwn5ej') format('woff'),
+	url('Fonts/Yekan/BYekan.ttf?-wwn5ej') format('truetype'),
+	url('Fonts/Yekan/BYekan.svg?-wwn5ej#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+@font-face{
+  font-family: 'elham';
+    src: url('Fonts/Elham/IRElham.eot');
+    src: url('Fonts/Elham/IRElham.eot?#iefix') format('embedded-opentype'),
+         url('Fonts/Elham/IRElham.woff') format('woff'),
+         url('Fonts/Elham/IRElham.ttf') format('truetype')
+}
+
+
+@font-face{
+  font-family: 'homa';
+    src: url('Fonts/Homa/IRHoma.eot');
+    src: url('Fonts/Homa/IRHoma.eot?#iefix') format('embedded-opentype'),
+         url('Fonts/Homa/IRHoma.woff') format('woff'),
+         url('Fonts/Homa/IRHoma.ttf') format('truetype')
+}
+
+@font-face{
+  font-family: 'koodak';
+    src: url('Fonts/Koodak/IRKoodak.eot');
+    src: url('Fonts/Koodak/IRKoodak.eot?#iefix') format('embedded-opentype'),
+         url('Fonts/Koodak/IRKoodak.woff') format('woff'),
+         url('Fonts/Koodak/IRKoodak.ttf') format('truetype')
+}
+
+@font-face{
+  font-family: 'trafik';
+    src: url('Fonts/Trafik/IRTerafik.eot');
+    src: url('Fonts/Trafik/IRTerafik.eot?#iefix') format('embedded-opentype'),
+         url('Fonts/Trafik/IRTerafik.woff') format('woff'),
+         url('Fonts/Trafik/IRTerafik.ttf') format('truetype')
+}
+
+@font-face{
+  font-family: 'dastnevis';
+    src: url('Fonts/DastNevis/IRDastNevis.eot');
+    src: url('Fonts/DastNevis/IRDastNevis.eot?#iefix') format('embedded-opentype'),
+         url('Fonts/DastNevis/IRDastNevis.woff') format('woff'),
+         url('Fonts/DastNevis/IRDastNevis.ttf') format('truetype')
+}
+
+@font-face{
+  font-family: 'nazanin';
+    src: url('Fonts/Nazanin/IRNazanin.eot');
+    src: url('Fonts/Nazanin/IRNazanin.eot?#iefix') format('embedded-opentype'),
+         url('Fonts/Nazanin/IRNazanin.woff') format('woff'),
+         url('Fonts/Nazanin/IRNazanin.ttf') format('truetype')
+}
+
+@font-face {
+    font-family: 'bmitrabold';
+    src: url('Fonts/MitraBold/BMitraBold.eot');
+    src: url('Fonts/MitraBold/BMitraBold.eot?#iefix') format('embedded-opentype'),
+         url('Fonts/MitraBold/BMitraBold.woff') format('woff'),
+         url('Fonts/MitraBold/BMitraBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: 'adobearabic';
+	src: url('Fonts/AdobeArabic/AdobeArabic.eot?-wwn5ej');
+	src: url('Fonts/AdobeArabic/AdobeArabic.eot?#iefix-wwn5ej') format('embedded-opentype'),
+	url('Fonts/AdobeArabic/AdobeArabic.woff?-wwn5ej') format('woff'),
+	url('Fonts/AdobeArabic/AdobeArabic.ttf?-wwn5ej') format('truetype'),
+	url('Fonts/AdobeArabic/AdobeArabic.svg?-wwn5ej#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'yekaneng';
+    src: url(Fonts/YekanEng/web_Yekan.woff);
+    src: url(Fonts/YekanEng/web_Yekan.eot?#iefix) format("embedded-opentype"),url(Fonts/YekanEng/web_Yekan.woff) format("woff"),url(Fonts/YekanEng/web_Yekan.ttf) format("truetype"),url(Fonts/YekanEng/web_Yekan.svg#BYekan) format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+/* Form Module */
+.formlogin-module {
+  position: relative;
+  background: #ffffff;
+  width: 100%;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+.formlogin-module .toggle {
+  cursor: pointer;
+  position: absolute;
+  top: -0;
+  right: -0;
+  background: #33b5e5;
+  width: 150px;
+  height: 30px;
+  margin: -5px 0 0;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.formlogin-module .toggle .tooltip {
+  position:absolute;
+  top:5px;
+  right:-65px;
+  display:block;
+  background:rgba(0, 0, 0, 0.6);
+  width: auto;
+  padding: 5px;
+  font-size: 10px;
+  line-height: 1;
+  text-transformlogin: uppercase;
+}
+.formlogin-module .toggle .tooltip:before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: -5px;
+  display: block;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid rgba(0, 0, 0, 0.6);
+}
+.formlogin-module .formlogin {
+  display: block;
+  padding: 40px;
+}
+
+.formlogin-module h2 {
+  margin: 0 0 20px;
+  color: #33b5e5;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}
+.formlogin-module input {
+  outline: none;
+  display: block;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  margin: 0 0 20px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  font-wieght: 400;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.formlogin-module input:focus {
+  border: 1px solid #33b5e5;
+  color: #333333;
+}
+.formlogin-module input[type=submit] {
+  cursor: pointer;
+  background: #33b5e5;
+  width: 100%;
+  border: 0;
+  padding: 10px 15px;
+  color: #ffffff;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  font:15px 'Yekan'
+}
+.formlogin-module input[type=submit]:hover {
+  background: #178ab4;
+}
+.formlogin-module .cta {
+  background: #f2f2f2;
+  width: 100%;
+  padding: 15px 40px;
+  box-sizing: border-box;
+  color: #666666;
+  font-size: 14px;
+  text-align: center;
+  font-family:'Yekan'
+}
+.formlogin-module .cta a {
+  color: #333333;
+  text-decoration: none;
+}
+
+
+/*---------------------------------------------------------------------------------------------------- */
+/*---------------------------------------------------------------------------------------------------- */
+/*---------------------------------------------------------------------------------------------------- */
+
+
+
