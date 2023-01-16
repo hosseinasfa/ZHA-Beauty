@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require ('cookie-parser');
 const validator = require('express-validator');
 const session = require ('express-session');
-const mongoStore = require ('connect-mongo');
+const MongoStore = require ('connect-mongo');
 const mongoose = require ('mongoose');
 const flash = require ('connect-flash');
 const passport = require('passport');
@@ -19,6 +19,7 @@ module.exports = class Application{
         this.setupExpress();
         this.setMongoConnection();
         this.setConfig();
+        this.setRouters();
     }
 
     setupExpress() {
@@ -45,18 +46,15 @@ module.exports = class Application{
         secret: 'ZHAsecretKey',
         resave: true,
         saveUninitialized: true,
-        store: mongoStore.create({ mongoUrl: 'mongodb://127.0.0.1/ZHA-Beauty' })
+        store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1/ZHA-Beauty' })
         }));
         
         app.use(cookieParser('ZHAsecretKey'));
         app.use(flash());
+    }
 
-
-        app.get('/' , (req , res) => {
-            res.json('Hello ZHA Users');
-        })
-
-
-
+    setRouters() {
+        app.use(require('./routes/api'));
+        app.use(require('./routes/web'));
     }
 }
