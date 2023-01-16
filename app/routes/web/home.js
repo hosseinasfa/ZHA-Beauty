@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { check, validationResult } = require('express-validator');
 
 // Controllers
 const homeController = require('app/http/controller/homeController');
@@ -11,5 +12,7 @@ router.get('/' , homeController.index);
 router.get('/login' , loginController.showLoginForm);
 router.get('/register' , registerController.showRegistrationForm);
 router.post('/register' , registerController.registerProccess);
+
+ 
 
 module.exports = router;

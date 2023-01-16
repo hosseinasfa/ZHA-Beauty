@@ -41,7 +41,7 @@ module.exports = class Application{
         app.set('views', path.resolve('./resource/views'));
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended : true}));
-
+        app.use(validator());
         app.use(session({
         secret: 'ZHAsecretKey',
         resave: true,
