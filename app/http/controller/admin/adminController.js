@@ -1,6 +1,6 @@
+const controller = require('app/http/controller/controller')
 
-
-class adminController {
+class adminController extends controller {
     index(req , res) {
         res.json('Admin Page')
     };
