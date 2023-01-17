@@ -1,16 +1,15 @@
 const express = require('express');
 const app = express();
 const http = require('http');
-const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require ('cookie-parser');
 const validator = require('express-validator');
 const session = require ('express-session');
-const MongoStore = require ('connect-mongo');
 const mongoose = require ('mongoose');
 const flash = require ('connect-flash');
 const passport = require('passport');
-const Helpers = require('./helpers')
+const Helpers = require('./helpers');
+const rememberLogin = require('./http/middleware/rememberLogin');
 
 
 
@@ -25,37 +24,33 @@ module.exports = class Application{
 
     setupExpress() {
         const server = http.createServer(app);
-        server.listen(3000 , () => console.log('Listening on port 3000...'));
+        server.listen(config.port , () => console.log(`Listening on port ${config.port}...`));
     }
 
 
     async setMongoConnection(){
         mongoose.set('strictQuery', false);
-        await mongoose.connect('mongodb://127.0.0.1/ZHA-Beauty');
+        await mongoose.connect(config.database.url);
     }
 
     /* express config */
     setConfig() {
         require('app/passport/passport-local');
 
-        app.use(express.static('public'));
-        app.set('view engine', 'ejs');
-        app.set('views', path.resolve('./resource/views'));
+        app.use(express.static(config.layout.public_dir));
+        app.set('view engine', config.layout.view_engine);
+        app.set('views', config.layout.view_dir );
+        
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended : true}));
         app.use(validator());
-        app.use(session({
-        secret: 'ZHAsecretKey',
-        resave: true,
-        saveUninitialized: true,
-        cookie : { expires : new Date(Date.now() + 1000 * 60 * 60 * 5 ) },
-        store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1/ZHA-Beauty' })
-        }));
+        app.use(session({...config.session}));
         
-        app.use(cookieParser('ZHAsecretKey'));
+        app.use(cookieParser(config.cookie_secretKey));
         app.use(flash());
         app.use(passport.initialize());
         app.use(passport.session());
+        app.use(rememberLogin.handle)
         app.use((req , res , next) => {
             app.locals = new Helpers(req , res).getObjects();
             next();
