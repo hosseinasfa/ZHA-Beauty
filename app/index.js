@@ -35,6 +35,7 @@ module.exports = class Application{
 
     /* express config */
     setConfig() {
+        require('app/passport/passport-local');
 
         app.use(express.static('public'));
         app.set('view engine', 'ejs');
@@ -51,6 +52,8 @@ module.exports = class Application{
         
         app.use(cookieParser('ZHAsecretKey'));
         app.use(flash());
+        app.use(passport.initialize());
+        app.use(passport.session());
     }
 
     setRouters() {

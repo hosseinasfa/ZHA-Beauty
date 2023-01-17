@@ -1,3 +1,85 @@
 <%- include('./../header'); -%>
-<h1>ورود به وبسایت</h1>
+<!-- pages-title-start -->
+<section class="contact-img-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="con-text">
+                    <h2 class="page-title">ورود</h2>
+                    <p><a href="#">خانه</a> | ورود</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- pages-title-end -->
+<!-- login content section start -->
+<div class="login-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-xs-12">
+
+                <div class="tb-login-form ">
+
+                    <% if(messages.length > 0) { %> 
+                    <div class="about-optima-text" >
+                    <ul>
+                        
+                        <li style="color:red;">
+                            <% messages.forEach(error => { %>
+                            <%= error %><br>
+                            <% }) %>
+                        </li>
+                    </ul>
+                    </div>
+                    <% } %>
+
+                    <h5 class="tb-title">ورود</h5>
+                    <!-- <p>Hello, Welcome your to account</p> -->
+                    <form method="post" action="/login" novalidate>
+                        <p class="checkout-coupon top log a-an">
+                            <label class="l-contact">
+                                <em>*</em>
+                                آدرس ایمیل
+                            </label>
+                            <input dir="rtl"  type="email" name="email" value="">
+                        </p>
+                        <p class="checkout-coupon top-down log a-an">
+                            <label class="l-contact">
+                                <em>*</em>
+                                پسوورد
+                            </label>
+                            <input dir="rtl"  type="password" name="password">
+                        </p>
+                        <!-- <div class="forgot-password1" dir="rtl">
+                            <label class="inline2">
+                                <em>*</em>
+                                یادآوری ورود 
+                                <input type="checkbox" name="rememberme7">
+                            </label>
+                            <a class="forgot-password" href="#">رمز عبورم را فراموش کرده ام</a>
+                        </div> -->
+                        <div class="tb-social-login">
+                            <a class="tb-twitter-login res" href="#">
+                                <i class="fa fa-google-plus"></i>
+                                عضویت با اکانت گوگل
+                            </a>
+                        </div>
+                        <p class="login-submit5">
+                            <input class="button-primary" type="submit" value="عضویت">
+                        </p>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- login  content section end -->
+<!-- service section start -->
+<section class="re-section-padding">
+    <div class="service section-padding">
+    </div>
+</section>
+<!-- service section end -->
 <%- include('./../footer'); -%>
