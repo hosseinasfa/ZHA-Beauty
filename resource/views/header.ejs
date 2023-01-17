@@ -67,8 +67,15 @@
 									<!-- <li><a href="cart.html"><i class="fa fa-shopping-cart"></i>سبد خرید</a></li>
 									<li><a href="wishlist.html"><i class="fa fa-heart"></i>مورد علاقه‌ها</a></li>
 									<li><a href="checkout.html"><i class="fa fa-usd"></i>پیگیری خرید</a></li> -->
-									<li style="padding-right:7px"><a href="/login"><i class="fa fa-lock"></i>ورود</a></li>
-                                    <li><a href="/register"><i class="fa fa-user"></i>عضویت</a></li>
+									
+                                    <% if(auth.check) { %>
+                                        <li style="padding-right:7px"><a href="/user-panel"><i class="fa fa-lock"></i>پنل کاربری</a></li>
+                                        <li><a href="/logout"><i class="fa fa-user"></i>خروج</a></li>
+                                    <%  } else { %>
+                                        <li style="padding-right:7px"><a href="/login"><i class="fa fa-lock"></i>ورود</a></li>
+                                        <li><a href="/register"><i class="fa fa-user"></i>عضویت</a></li>
+                                    <% } %>    
+
 								</ul>
 							</div>
 						</div>

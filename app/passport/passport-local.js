@@ -45,7 +45,6 @@ passport.serializeUser(function(user, done) {
     passwordField : 'password',
     passReqToCallback : true,
   } , (req , email , password , done) => {
-        console.log(email);
         User.findOne({ 'email' : email } , ( err , user) =>{
             if(err) return done(err);
 

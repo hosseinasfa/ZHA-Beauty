@@ -10,6 +10,7 @@ const MongoStore = require ('connect-mongo');
 const mongoose = require ('mongoose');
 const flash = require ('connect-flash');
 const passport = require('passport');
+const Helpers = require('./helpers')
 
 
 
@@ -55,6 +56,10 @@ module.exports = class Application{
         app.use(flash());
         app.use(passport.initialize());
         app.use(passport.session());
+        app.use((req , res , next) => {
+            app.locals = new Helpers(req , res).getObjects();
+            next();
+        })
     }
 
     setRouters() {
