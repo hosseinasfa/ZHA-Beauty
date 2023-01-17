@@ -19,7 +19,6 @@ class registerController extends controller {
 
   validationData(req) {
     req.checkBody('name' , 'فیلد نام نمی تواند کمتر از 5 کاراکتر باشد').isLength({ min : 5});
-    req.checkBody('email' , 'فیلد ایمیل نمی تواند خالی بماند').notEmpty();
     req.checkBody('email' , 'فیلد ایمیل معتبر نیست').isEmail();
     req.checkBody('password' , 'فیلد پسوورد نمی تواند کمتر از 8 کاراکتر باشد').isLength({ min : 8});
 

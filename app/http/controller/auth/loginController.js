@@ -1,4 +1,5 @@
 const controller = require('app/http/controller/controller');
+const passport = require('passport');
 
 
 
@@ -10,14 +11,13 @@ class loginController extends controller {
   loginProccess(req , res , next) {
     this.validationData(req)
         .then(result =>{
-            if(result) res.json('login proccess')
+            if(result) this.login(req , res , next);
             else res.redirect('/login')
 
         });
   }
 
   validationData(req) {
-    req.checkBody('email' , 'فیلد ایمیل نمی تواند خالی بماند').notEmpty();
     req.checkBody('email' , 'فیلد ایمیل معتبر نیست').isEmail();
     req.checkBody('password' , 'فیلد پسوورد نمی تواند کمتر از 8 کاراکتر باشد').isLength({ min : 8});
 
@@ -34,6 +34,15 @@ class loginController extends controller {
             return false;
         })
         .catch(err => console.log(err))
+  }
+
+
+  login(req , res , next) {
+    passport.authenticate('local.login' , {
+        successRedirect : '/',
+        failureRedirect : '/login',
+        failureFlash : true
+    })(req , res , next);
   }
 
 }
