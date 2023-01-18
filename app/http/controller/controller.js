@@ -1,5 +1,5 @@
 const autoBind = require('auto-bind');
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 
 
 module.exports = class controller {

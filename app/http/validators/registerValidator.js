@@ -1,5 +1,5 @@
 const validator = require('./validator');
-const { check } = require('express-validator/check');
+const { check } = require('express-validator');
 
 class registerValidator extends validator {
     handle() {
