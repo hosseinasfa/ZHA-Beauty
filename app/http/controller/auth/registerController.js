@@ -6,14 +6,15 @@ const passport = require('passport');
 
 class registerController extends controller {
     showRegistrationForm(req , res) {
-        res.render('auth/register' , { messages : req.flash('errors')});
+        const title = 'صفحه عضویت';
+        res.render('home/auth/register' , { messages : req.flash('errors') , title });
     }
 
   registerProccess(req , res , next) {
     this.validationData(req)
         .then(result =>{
             if(result) this.register(req , res , next);
-            else res.redirect('/register')
+            else res.redirect('/auth/register')
 
         });
   }
@@ -22,7 +23,7 @@ class registerController extends controller {
   register(req , res , next) {
     passport.authenticate('local.register' , {
         successRedirect : '/',
-        failureRedirect : '/register',
+        failureRedirect : '/auth/register',
         failureFlash : true
     })(req , res , next);
   }

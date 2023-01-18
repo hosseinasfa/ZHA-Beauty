@@ -2,7 +2,7 @@ const controller = require('./controller');
 
 class homeController extends controller {
     index(req , res) {
-        res.render('home');
+        res.render('home/index');
     }
 
 }

@@ -3,24 +3,24 @@ const passport = require('passport');
 
 
 
-class loginController extends controller {
-    showLoginForm(req , res) {
-        const title = 'صفحه ورود';
-        res.render('home/auth/login' , { messages : req.flash('errors') , title });
+class forgotPasswordController extends controller {
+    showForgotPasswordForm(req , res) {
+        const title = ' فراموشی رمز عبور';
+        res.render('home/auth/passwords/email' , { messages : req.flash('errors') , title });
     }
 
   loginProccess(req , res , next) {
         this.validationData(req)
         .then(result =>{
             if(result) this.login(req , res , next);
-            else res.redirect('/auth/login')
+            else res.redirect('/login')
 
         });
   };
 
   login(req , res , next) {
     passport.authenticate('local.login' , (err , user) => {
-        if(!user) return res.redirect('/auth/login');
+        if(!user) return res.redirect('/login');
 
         req.login(user , err =>{
             if(req.body.remember) {
@@ -35,4 +35,4 @@ class loginController extends controller {
 
 }
 
-module.exports = new loginController();
+module.exports = new forgotPasswordController();

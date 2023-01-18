@@ -4,44 +4,44 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>مجله زیبایی ژا</title>
+        <title><%- defineContent('title') || 'مجله زیبایی ژا' %></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- favicon
 		============================================ -->		
-        <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+        <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
 		<!-- google fonts -->
 		<link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
 		<!-- all css here -->
 		<!-- bootstrap v3.3.6 css -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
 		<!-- animate css -->
-        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="/css/animate.css">
 		<!-- pe-icon-7-stroke -->
 		<link rel="stylesheet" href="css/pe-icon-7-stroke.min.css">
 		<!-- jquery-ui.min css -->
-        <link rel="stylesheet" href="css/jquery-ui.min.css">
+        <link rel="stylesheet" href="/css/jquery-ui.min.css">
         <!-- Image Zoom CSS
 		============================================ -->
-        <link rel="stylesheet" href="css/img-zoom/jquery.simpleLens.css">
+        <link rel="stylesheet" href="/css/img-zoom/jquery.simpleLens.css">
 		<!-- meanmenu css -->
-        <link rel="stylesheet" href="css/meanmenu.min.css">
+        <link rel="stylesheet" href="/css/meanmenu.min.css">
 		<!-- nivo slider CSS
 		============================================ -->
-		<link rel="stylesheet" href="lib/css/nivo-slider.css" type="text/css" />
-		<link rel="stylesheet" href="lib/css/preview.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/lib/css/nivo-slider.css" type="text/css" />
+		<link rel="stylesheet" href="/lib/css/preview.css" type="text/css" media="screen" />
 		<!-- owl.carousel css -->
-        <link rel="stylesheet" href="css/owl.carousel.css">
+        <link rel="stylesheet" href="/css/owl.carousel.css">
 		<!-- font-awesome css -->
-        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
 		<!-- style css -->
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="/style.css">
 		<!-- responsive css -->
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="/css/responsive.css">
 		<!-- modernizr css -->
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <link href="styleall.css" rel="stylesheet" />
+        <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
+        <link href="/styleall.css" rel="stylesheet" />
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -72,8 +72,8 @@
                                         <li style="padding-right:7px"><a href="/user-panel"><i class="fa fa-lock"></i>پنل کاربری</a></li>
                                         <li><a href="/logout"><i class="fa fa-user"></i>خروج</a></li>
                                     <%  } else { %>
-                                        <li style="padding-right:7px"><a href="/login"><i class="fa fa-lock"></i>ورود</a></li>
-                                        <li><a href="/register"><i class="fa fa-user"></i>عضویت</a></li>
+                                        <li style="padding-right:7px"><a href="/auth/login"><i class="fa fa-lock"></i>ورود</a></li>
+                                        <li><a href="/auth/register"><i class="fa fa-user"></i>عضویت</a></li>
                                     <% } %>    
 
 								</ul>
@@ -87,7 +87,7 @@
 					<div class="row">
 						<div class="col-sm-2 col-md-2 col-xs-4">
 							<div class="logo">
-								<a href="index.html"><img src="img/logo.png" alt="" /></a>
+								<a href="/"><img src="/img/logo.png" alt="" /></a>
 							</div>
 						</div>
 						<div class="col-sm-10 col-md-10 col-xs-8 static">
@@ -95,7 +95,7 @@
 							    <div class="mainmenu clearfix hidden-sm hidden-xs">
                                     <nav>
                                         <ul>
-                                            <li><a href="index.html">خانه</a>
+                                            <li><a href="/">خانه</a>
                                             </li>
                                             <li><a href="shop.html">فروشگاه</a>
                                                 <div class="magamenu ">
@@ -123,7 +123,7 @@
                                                         </li>
                                                         <li class="single-menu colmd4 colmd5 pull-right">
                                                             <a href="#">
-                                                                <img alt="" src="img/maga-banner.png">
+                                                                <img alt="" src="/img/maga-banner.png">
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -169,7 +169,7 @@
                                         <li><a href="cart.html"><i class="fa fa-shopping-cart"></i><span class="color1">2</span></a>
                                             <ul class="drop-cart">
                                                 <li>
-                                                    <a href="cart.html"><img src="img/cart/1.png" alt="" /></a>
+                                                    <a href="cart.html"><img src="/img/cart/1.png" alt="" /></a>
                                                     <div class="add-cart-text">
                                                         <p><a href="#">پیراهن سفید</a></p>
                                                         <p>40000 تومان</p>
@@ -181,7 +181,7 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <a href="cart.html"><img src="img/cart/2.png" alt="" /></a>
+                                                    <a href="cart.html"><img src="/img/cart/2.png" alt="" /></a>
                                                     <div class="add-cart-text">
                                                         <p><a href="#">پیراهن سفید</a></p>
                                                         <p>40000 تومان</p>
@@ -215,3 +215,171 @@
 			</div>
 		</header>
         <!-- header section end -->
+
+
+
+
+            <%- body %>
+
+
+        <!-- footer section start -->
+		<footer class="re-footer-section">
+			<!-- footer-top area start -->
+			<div class="footer-top section-padding-top">
+				<div class="footer-dsc">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12 col-sm-4 col-md-3 pull-right" >
+								<div class="single-text res-text">
+									<div class="footer-title">
+										<h4>ارتباط با ما</h4>
+										<hr class="dubble-border"/>
+									</div>
+									<div class="footer-text">
+										<ul>
+											<li>
+												<i class="pe-7s-map-marker"></i>
+												<p>تهران، خیابان آزادی، کوچه بهار، پلاک 11.</p>
+												
+											</li>
+											<li>
+												<i class="pe-7s-call"></i>
+												<p style="font-family:Tahoma">0218888888</p>
+                                                <p style="font-family:Tahoma">0218888888</p>
+											</li>
+											<li>
+												<i class="pe-7s-mail-open"></i>
+												<p>info@example.com</p>
+												<p>company@example.com</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 pull-right">
+                                <div class="single-text res-text">
+                                    <div class="footer-title">
+                                        <h4>حساب کاربری</h4>
+                                        <hr class="dubble-border" />
+                                    </div>
+                                    <div class="footer-menu">
+                                        <ul>
+                                            <li><a href="login.html">حساب کاربری من</a></li>
+                                            <li><a href="wishlist.html">مورد علاقه‌های من</a></li>
+                                            <li><a href="order-complete">سفارشات من</a></li>
+                                            <li><a href="#">اعتبار من</a></li>
+                                            <li class="nm"><a href="#">آدرس من</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 margin-top pull-right">
+                                <div class="single-text res-text">
+                                    <div class="footer-title">
+                                        <h4>خدمات مشتریان</h4>
+                                        <hr class="dubble-border" />
+                                    </div>
+                                    <div class="footer-menu">
+                                        <ul>
+                                            <li><a href="contact.html">ارتباط با ما</a></li>
+                                            <li><a href="#">برگشتی‌ها</a></li>
+                                            <li><a href="#">برندها</a></li>
+                                            <li><a href="#">نقشه سایت</a></li>
+                                            <li class="nm"><a href="#">جوایز</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 hidden-sm col-md-3 margin-top pull-right">
+                                <div class="single-text res-text">
+                                    <div class="footer-title">
+                                        <h4>اخبار</h4>
+                                        <hr class="dubble-border" />
+                                    </div>
+                                    <div class="footer-text">
+                                        <p>اما به هر حال تصمیم گیری های غلط هیئت مدیره و به خدمت گرفتن بازیکنان پایین تر از سطح مورد نظر باعث سلطه کهکشانی ها بر لالیگا و لیگ قهرمانان شده است.</p>
+                                        <form action="mail.php" method="post" dir="rtl">
+                                            <input type="text" name="email" placeholder="ایمیل" />
+                                            <input type="submit" value="ثبت" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+					</div>
+					<hr class="dubble-border"/>
+				</div>
+				<div class="social-media">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12 col-sm-6">
+								<div class="paypal social-icon">
+									<ul>
+										<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+										<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+										<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+										<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+										<li><a href="#"><i class="fa fa-cc-stripe"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-6">
+								<div class="social-icon">
+									<ul class="floatright">
+										<li class="res-mar"><a href="#"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+										<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+										<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+										<li><a href="#"><i class="fa fa-soundcloud"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- footer-top area end -->
+			<!-- footer-bottom area start -->
+			<div class="footer-bottom">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 text-center">
+							<p>&copy; ParsDevelop. All Rights Reserved.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- footer-bottom area end -->
+		</footer>
+        <!-- footer section end -->
+        
+		<!-- all js here -->
+		<!-- jquery latest version -->
+        <script src="/js/vendor/jquery-1.12.0.min.js"></script>
+		<!-- bootstrap js -->
+        <script src="/js/bootstrap.min.js"></script>
+        <!-- parallax js -->
+        <script src="/js/parallax.min.js"></script>
+		<!-- owl.carousel js -->
+        <script src="/js/owl.carousel.min.js"></script>
+        <!-- Img Zoom js -->
+		<script src="/js/img-zoom/jquery.simpleLens.min.js"></script>
+		<!-- meanmenu js -->
+        <script src="/js/jquery.meanmenu.js"></script>
+		<!-- jquery.countdown js -->
+        <script src="/js/jquery.countdown.min.js"></script>
+		<!-- Nivo slider js
+		============================================ --> 		
+		<script src="/lib/js/jquery.nivo.slider.js" type="text/javascript"></script>
+		<script src="/lib/home.js" type="text/javascript"></script>
+		<!-- jquery-ui js -->
+        <script src="/js/jquery-ui.min.js"></script>
+		<!-- sticky js -->
+        <script src="/js/sticky.js"></script>
+		<!-- plugins js -->
+        <script src="/js/plugins.js"></script>
+		<!-- main js -->
+        <script src="/js/main.js"></script>
+    </body>
+</html>

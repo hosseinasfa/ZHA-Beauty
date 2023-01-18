@@ -1,12 +1,12 @@
-<%- include('./../header'); -%>
+
 <!-- pages-title-start -->
 <section class="contact-img-area">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
                 <div class="con-text">
-                    <h2 class="page-title">عضویت</h2>
-                    <p><a href="#">خانه</a> | عضویت</p>
+                    <h2 class="page-title">ورود</h2>
+                    <p><a href="#">خانه</a> | ورود</p>
                 </div>
             </div>
         </div>
@@ -23,16 +23,9 @@
 
                     <%- include('./../layouts/error-messages') -%>
 
-                    <h5 class="tb-title">عضویت</h5>
+                    <h5 class="tb-title">ورود</h5>
                     <!-- <p>Hello, Welcome your to account</p> -->
-                    <form method="post" action="/register" novalidate>
-                        <p class="checkout-coupon top log a-an">
-                            <label class="l-contact">
-                                <em>*</em>
-                                نام کامل
-                            </label>
-                            <input dir="rtl"  type="text" name="name">
-                        </p>
+                    <form method="post" action="/auth/login" novalidate>
                         <p class="checkout-coupon top log a-an">
                             <label class="l-contact">
                                 <em>*</em>
@@ -47,22 +40,22 @@
                             </label>
                             <input dir="rtl"  type="password" name="password">
                         </p>
-                        <!-- <div class="forgot-password1" dir="rtl">
+                        <div class="forgot-password1" dir="rtl">
                             <label class="inline2">
                                 <em>*</em>
                                 یادآوری ورود 
-                                <input type="checkbox" name="rememberme7">
+                                <input type="checkbox" name="remember">
                             </label>
-                            <a class="forgot-password" href="#">رمز عبورم را فراموش کرده ام</a>
-                        </div> -->
-                        <div class="tb-social-login">
-                            <a class="tb-twitter-login res" href="#">
-                                <i class="fa fa-google-plus"></i>
-                                عضویت با اکانت گوگل
-                            </a>
+                            <a class="forgot-password" href="/auth/password/reset">رمز عبورم را فراموش کرده ام</a>
                         </div>
+                        <!-- <div class="tb-social-login">
+                            <a class="tb-twitter-login res" href="/auth/google">
+                                <i class="fa fa-google-plus"></i>
+                                ورود با اکانت گوگل
+                            </a>
+                        </div> -->
                         <p class="login-submit5">
-                            <input class="button-primary" type="submit" value="عضویت">
+                            <input class="button-primary" type="submit" value="ورود">
                         </p>
                     </form>
                 </div>
@@ -78,4 +71,3 @@
     </div>
 </section>
 <!-- service section end -->
-<%- include('./../footer'); -%>
