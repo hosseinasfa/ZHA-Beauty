@@ -1,6 +1,8 @@
 const controller = require('app/http/controller/controller');
 const passport = require('passport');
-
+const PasswordReset = require('app/models/password-reset');
+const User = require('app/models/user');
+const uniqueString = require('unique-string');
 
 
 class forgotPasswordController extends controller {
@@ -9,28 +11,36 @@ class forgotPasswordController extends controller {
         res.render('home/auth/passwords/email' , { messages : req.flash('errors') , title });
     }
 
-  loginProccess(req , res , next) {
-        this.validationData(req)
-        .then(result =>{
-            if(result) this.login(req , res , next);
-            else res.redirect('/login')
+    async sendPasswordResetLink(req , res , next) {
+        let result = await this.validationData(req)
+        if(result) { 
+            return this.sendResetLink(req , res);
+        } 
 
-        });
+        return    res.redirect('/auth/password/reset');
+          
   };
 
-  login(req , res , next) {
-    passport.authenticate('local.login' , (err , user) => {
-        if(!user) return res.redirect('/login');
+async  sendResetLink(req , res , next) {
+    let user = await User.findOne({ email : req.body.email });
+    if(! user) {
+        req.flash( 'errors' , 'چنین کاربری وجود ندارد');
+        return this.back(req , res);
+    }
 
-        req.login(user , err =>{
-            if(req.body.remember) {
-                //set Token
-                user.setRememberToken(res);
-            }
+    const newPasswordReset = new PasswordReset({
+        email : req.body.email,
+        token : uniqueString()
+    });
 
-            return res.redirect('/');
-        })
-    })(req , res , next);
+    await newPasswordReset.save();
+
+    // Send Email
+    
+
+    /* req.flash( 'success' , 'ایمیل بازیابی رمز عبور با موفقیت ارسال شد'); */
+    res.redirect('/');
+
   }
 
 }

@@ -22,6 +22,10 @@ module.exports = class controller {
     
                 return true;
       }
+
+      back(req , res) {
+        return res.redirect(req.header('Referer') || '/');
+      }
 }
 
 

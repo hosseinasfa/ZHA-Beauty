@@ -44,6 +44,8 @@ module.exports = class Application{
         app.set('views', config.layout.view_dir );
         app.use(config.layout.ejs.expressLayouts);
         app.set("layout" , config.layout.ejs.master);
+        app.set("layout extractScripts" , config.layout.ejs.extractScripts);
+        app.set("layout extractStyles" , config.layout.ejs.extractStyles);
         
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended : true}));
@@ -58,7 +60,7 @@ module.exports = class Application{
         app.use((req , res , next) => {
             app.locals = new Helpers(req , res).getObjects();
             next();
-        })
+        });
     }
 
     setRouters() {

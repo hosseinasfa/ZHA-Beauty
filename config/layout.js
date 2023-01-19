@@ -7,6 +7,8 @@ module.exports = {
     view_engine : 'ejs',
     ejs : {
         expressLayouts,
-        master : 'home/master'
+        master : 'home/master',
+        extractScripts : true,
+        extractStyles : true
     }
 }

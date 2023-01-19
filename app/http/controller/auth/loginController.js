@@ -9,13 +9,14 @@ class loginController extends controller {
         res.render('home/auth/login' , { messages : req.flash('errors') , title });
     }
 
-  loginProccess(req , res , next) {
-        this.validationData(req)
-        .then(result =>{
-            if(result) this.login(req , res , next);
-            else res.redirect('/auth/login')
+async  loginProccess(req , res , next) {
+        let result = await this.validationData(req)
+        if(result) { 
+            return this.login(req , res , next);
+        } 
 
-        });
+        return    res.redirect('/auth/login');
+          
   };
 
   login(req , res , next) {

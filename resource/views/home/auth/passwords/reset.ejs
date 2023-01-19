@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <div class="con-text">
-                    <h2 class="page-title">فراموشی رمز عبور</h2>
-                    <p><a href="#">خانه</a> | فراموشی رمز عبور</p>
+                    <h2 class="page-title">بازیابی رمز عبور</h2>
+                    <p><a href="#">خانه</a> | بازیابی رمز عبور</p>
                 </div>
             </div>
         </div>
@@ -23,9 +23,12 @@
 
                     <%- include(viewPath('layouts/error-messages')) -%>
 
-                    <h5 class="tb-title">فراموشی رمز عبور</h5>
+                    
+
+                    <h5 class="tb-title">بازیابی رمز عبور</h5>
                     <!-- <p>Hello, Welcome your to account</p> -->
-                    <form method="post" action="/auth/password/email" novalidate>
+                    <form method="post" action="/auth/password/reset" novalidate>
+                        <input type="hidden" name="token" value="<%= token %>"> 
                         <p class="checkout-coupon top log a-an">
                             <label class="l-contact">
                                 <em>*</em>
@@ -33,8 +36,15 @@
                             </label>
                             <input dir="rtl"  type="email" name="email" value="">
                         </p>
+                        <p class="checkout-coupon top-down log a-an">
+                            <label class="l-contact">
+                                <em>*</em>
+                                پسوورد جدید
+                            </label>
+                            <input dir="rtl"  type="password" name="password">
+                        </p>
                         <p class="login-submit5">
-                            <input class="button-primary" type="submit" value="بازیابی رمز عبور">
+                            <input class="button-primary" type="submit" value="ریست">
                         </p>
                     </form>
                 </div>

@@ -10,13 +10,15 @@ class registerController extends controller {
         res.render('home/auth/register' , { messages : req.flash('errors') , title });
     }
 
-  registerProccess(req , res , next) {
-    this.validationData(req)
-        .then(result =>{
-            if(result) this.register(req , res , next);
-            else res.redirect('/auth/register')
+async  registerProccess(req , res , next) {
 
-        });
+        let result = await this.validationData(req)
+        if(result) { 
+            return this.register(req , res , next);
+        } 
+
+        return    res.redirect('/auth/register');
+          
   }
 
 
