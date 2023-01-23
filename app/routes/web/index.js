@@ -6,6 +6,7 @@ const router = express.Router();
 const redirectIfAuthenticated = require('app/http/middleware/redirectIfAuthenticated');
 const redirectIfNotAdmin = require('app/http/middleware/redirectIfNotAdmin');
 
+
 // Admin Router
 const adminRouter = require('./admin');
 router.use('/admin' , redirectIfNotAdmin.handle , adminRouter); // add routes in admin.js to router

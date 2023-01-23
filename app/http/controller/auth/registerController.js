@@ -7,7 +7,7 @@ const passport = require('passport');
 class registerController extends controller {
     showRegistrationForm(req , res) {
         const title = 'صفحه عضویت';
-        res.render('home/auth/register' , { messages : req.flash('errors') , title });
+        res.render('home/auth/register' , { title });
     }
 
 async  registerProccess(req , res , next) {
@@ -17,7 +17,7 @@ async  registerProccess(req , res , next) {
             return this.register(req , res , next);
         } 
 
-        return    res.redirect('/auth/register');
+        return this.back(req , res);
           
   }
 

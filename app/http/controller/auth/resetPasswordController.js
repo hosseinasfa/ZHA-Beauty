@@ -9,7 +9,6 @@ class resetPasswordController extends controller {
     showResetPassword(req , res) {
         const title = 'بازیابی رمز عبور';
         res.render('home/auth/passwords/reset' , {
-             messages : req.flash('errors') ,
               title,
               token : req.params.token
              });
@@ -20,6 +19,8 @@ class resetPasswordController extends controller {
         if(result) { 
             return this.resetPassword(req , res);
         } 
+
+        req.flash('formData' , req.body);
 
         return    res.redirect('/auth/password/reset/' + req.body.token);
           

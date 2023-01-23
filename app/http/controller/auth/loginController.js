@@ -6,7 +6,7 @@ const passport = require('passport');
 class loginController extends controller {
     showLoginForm(req , res) {
         const title = 'صفحه ورود';
-        res.render('home/auth/login' , { messages : req.flash('errors') , title });
+        res.render('home/auth/login' , { title });
     }
 
 async  loginProccess(req , res , next) {
@@ -15,7 +15,7 @@ async  loginProccess(req , res , next) {
             return this.login(req , res , next);
         } 
 
-        return    res.redirect('/auth/login');
+        return this.back(req , res);
           
   };
 

@@ -8,7 +8,7 @@ const uniqueString = require('unique-string');
 class forgotPasswordController extends controller {
     showForgotPasswordForm(req , res) {
         const title = ' فراموشی رمز عبور';
-        res.render('home/auth/passwords/email' , { messages : req.flash('errors') , title });
+        res.render('home/auth/passwords/email' , { title });
     }
 
     async sendPasswordResetLink(req , res , next) {
@@ -16,8 +16,8 @@ class forgotPasswordController extends controller {
         if(result) { 
             return this.sendResetLink(req , res);
         } 
-
-        return    res.redirect('/auth/password/reset');
+        
+        return this.back(req , res);
           
   };
 
