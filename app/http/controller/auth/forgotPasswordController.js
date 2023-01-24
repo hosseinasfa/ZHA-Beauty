@@ -6,40 +6,55 @@ const uniqueString = require('unique-string');
 
 
 class forgotPasswordController extends controller {
-    showForgotPasswordForm(req , res) {
-        const title = ' فراموشی رمز عبور';
-        res.render('home/auth/passwords/email' , { title });
+    showForgotPasswordForm(req , res , next) {
+        try {
+            const title = ' فراموشی رمز عبور';
+            res.render('home/auth/passwords/email' , { title });
+        } catch (err) {
+            res.statusCode = 500;
+            next(err);
+        }
     }
 
     async sendPasswordResetLink(req , res , next) {
-        let result = await this.validationData(req)
-        if(result) { 
-            return this.sendResetLink(req , res);
-        } 
-        
-        return this.back(req , res);
-          
+        try {
+            let result = await this.validationData(req)
+            if(result) { 
+                return this.sendResetLink(req , res);
+            } 
+            
+            return this.back(req , res);
+              
+        } catch (err) {
+            res.statusCode = 500;
+            next(err);
+        }
   };
 
 async  sendResetLink(req , res , next) {
-    let user = await User.findOne({ email : req.body.email });
-    if(! user) {
-        req.flash( 'errors' , 'چنین کاربری وجود ندارد');
-        return this.back(req , res);
-    }
-
-    const newPasswordReset = new PasswordReset({
-        email : req.body.email,
-        token : uniqueString()
-    });
-
-    await newPasswordReset.save();
-
-    // Send Email
+    try {
+        let user = await User.findOne({ email : req.body.email });
+        if(! user) {
+            req.flash( 'errors' , 'چنین کاربری وجود ندارد');
+            return this.back(req , res);
+        }
     
-
-    /* req.flash( 'success' , 'ایمیل بازیابی رمز عبور با موفقیت ارسال شد'); */
-    res.redirect('/');
+        const newPasswordReset = new PasswordReset({
+            email : req.body.email,
+            token : uniqueString()
+        });
+    
+        await newPasswordReset.save();
+    
+        // Send Email
+        
+    
+        /* req.flash( 'success' , 'ایمیل بازیابی رمز عبور با موفقیت ارسال شد'); */
+        res.redirect('/');
+    } catch (err) {
+        res.statusCode = 500;
+        next(err);
+    }
 
   }
 
