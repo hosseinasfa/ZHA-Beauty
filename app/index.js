@@ -9,6 +9,7 @@ const mongoose = require ('mongoose');
 const flash = require ('connect-flash');
 const passport = require('passport');
 const Helpers = require('./helpers');
+const methodOverride = require('method-override')
 
 
 const rememberLogin = require('./http/middleware/rememberLogin');
@@ -49,7 +50,7 @@ module.exports = class Application{
         
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended : true}));
-
+        app.use(methodOverride('_method'));
         app.use(session({...config.session}));
         
         app.use(cookieParser(config.cookie_secretKey));

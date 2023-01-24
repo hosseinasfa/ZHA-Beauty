@@ -4,7 +4,7 @@ const fs = require('fs');
 const getDirImage = () => {
     let year = new Date().getFullYear();
     let month = new Date().getMonth() + 1;
-    let day = new Date().getDay();
+    let day = new Date().getDate();
     return `./public/uploads/images/${year}/${month}/${day}`;
 }
 

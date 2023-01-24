@@ -11,7 +11,11 @@ class courseValidator extends validator {
         check('title')
             .isLength({ min : 5})
             .withMessage(' عنوان نمی تواند کمتر از 5 کاراکتر باشد')
-            .custom(async value => {
+            .custom(async (value , {req}) => {
+                if(req.query._method === 'put') {
+                    let course = await Course.findById(req.params.id);
+                    if(course.title === value) return;
+                }
                 let course = await Course.findOne({ slug : this.slug(value) });
                 if(course) {
                     throw new Error('چنین دوره ای با این عنوان قبلا در سایت قرار داده شده است')
@@ -19,7 +23,9 @@ class courseValidator extends validator {
             }),
 
             check('images')
-                .custom(async value => {
+                .custom(async (value , {req}) => {
+                    if(req.query._method === 'put' && value === undefined) return;
+
                     if(! value)
                     throw new Error ('وارد کردن تصویر الزامی است');
 
