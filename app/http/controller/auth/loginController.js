@@ -9,7 +9,6 @@ class loginController extends controller {
             const title = 'صفحه ورود';
             res.render('home/auth/login' , { title });
         } catch (err) {
-            res.statusCode = 500;
             next(err);
         }
     }
@@ -23,7 +22,6 @@ async  loginProccess(req , res , next) {
 
         return this.back(req , res);
     } catch (err) {
-        res.statusCode = 500;
         next(err);
     }
           
@@ -44,7 +42,6 @@ async  loginProccess(req , res , next) {
             })
         })(req , res , next);
     } catch (err) {
-        res.statusCode = 500;
         next(err);
     }
   }

@@ -5,7 +5,6 @@ class adminController extends controller {
        try {
         res.render('admin/index')
        } catch (err) {
-        res.statusCode = 500;
         next(err);
        }
     };

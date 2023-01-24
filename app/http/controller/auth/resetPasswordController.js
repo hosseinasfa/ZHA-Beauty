@@ -14,7 +14,6 @@ class resetPasswordController extends controller {
                   token : req.params.token
                  });
         } catch (err) {
-            res.statusCode = 500;
             next(err);
         }
     }
@@ -30,7 +29,6 @@ class resetPasswordController extends controller {
     
             return    res.redirect('/auth/password/reset/' + req.body.token);
         } catch (err) {
-            res.statusCode = 500;
             next(err);
         }
           
@@ -60,7 +58,6 @@ async  resetPassword(req , res , next) {
         await field.update({ use : true });
         return res.redirect('/auth/login');
     } catch (err) {
-        res.statusCode = 500;
         next(err);
     }
 

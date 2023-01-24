@@ -11,7 +11,6 @@ class forgotPasswordController extends controller {
             const title = ' فراموشی رمز عبور';
             res.render('home/auth/passwords/email' , { title });
         } catch (err) {
-            res.statusCode = 500;
             next(err);
         }
     }
@@ -26,7 +25,6 @@ class forgotPasswordController extends controller {
             return this.back(req , res);
               
         } catch (err) {
-            res.statusCode = 500;
             next(err);
         }
   };
@@ -52,7 +50,6 @@ async  sendResetLink(req , res , next) {
         /* req.flash( 'success' , 'ایمیل بازیابی رمز عبور با موفقیت ارسال شد'); */
         res.redirect('/');
     } catch (err) {
-        res.statusCode = 500;
         next(err);
     }
 

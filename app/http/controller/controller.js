@@ -1,5 +1,6 @@
 const autoBind = require('auto-bind');
 const { validationResult } = require('express-validator');
+const isMongoId = require('validator/lib/isMongoId');
 
 
 module.exports = class controller {
@@ -26,6 +27,19 @@ module.exports = class controller {
       back(req , res) {
         req.flash('formData' , req.body);
         return res.redirect(req.header('Referer') || '/');
+      }
+
+      //check id in a right format 
+      isMongoId(paramId) {
+        if(! isMongoId(paramId)) {
+            this.error('آی دی وارد شده صحیح نیست' , 404)
+        }
+      }
+
+      error(message , status = 500) {
+        let err = new Error(message);
+        err.statusCode = status;
+        throw err;
       }
 }
 

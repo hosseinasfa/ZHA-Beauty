@@ -11,7 +11,6 @@ class courseController extends controller {
             let courses = await Course.paginate({} , { page , sort : { createdAt : 1 } , limit : 2});
             res.render('admin/courses/index' , { title : 'دوره ها' , courses})
         } catch (err) {
-            res.statusCode = 500;
             next(err);
         }
     };
@@ -52,21 +51,19 @@ class courseController extends controller {
     
             return res.redirect('/admin/courses');
         } catch(err) {
-            res.statusCode = 500;
             next(err);
         }
     }
 
     async edit(req , res ,next) {
         try {
+            this.isMongoId(req.params.id);
+
             let course = await Course.findById(req.params.id);
-            if( ! course) {
-                return res.json('چنین دوره ای وجود ندارد');
-            }
+            if( ! course) this.error('چنین دوره ای وجود ندارد' , 404);
     
             return res.render('admin/courses/edit' , { course });
         } catch (err) {
-            res.statusCode = 500;
             next(err);
         }
     }
@@ -108,7 +105,6 @@ class courseController extends controller {
             // redirect back
             return res.redirect('/admin/courses');
         } catch (err) {
-            res.statusCode = 500;
             next(err);
         }
 
@@ -116,10 +112,10 @@ class courseController extends controller {
 
     async destroy(req , res , next) {
         try {
+            this.isMongoId(req.params.id);
+
             let course = await Course.findById(req.params.id);
-            if(! course){
-                return res.json('چنین دوره ای یافت نشد');
-            }
+            if( ! course) this.error('چنین دوره ای وجود ندارد' , 404);
     
             //delete episodes
             
@@ -132,7 +128,6 @@ class courseController extends controller {
     
             return res.redirect('/admin/courses');
         } catch (err) {
-            res.statusCode = 500;
             next(err);
         }
 

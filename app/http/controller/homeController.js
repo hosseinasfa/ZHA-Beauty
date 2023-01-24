@@ -5,7 +5,6 @@ class homeController extends controller {
         try {
             res.render('home/index');
         } catch (err) {
-            res.statusCode = 500;
             next(err);
         }
     }
