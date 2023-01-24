@@ -5,24 +5,22 @@ const mongoosePaginate = require('mongoose-paginate');
 
 
 
-const courseSchema = mongoose.Schema({
-    user : { type : Schema.Types.ObjectId , ref : 'User'},
+const episodeSchema = mongoose.Schema({
+    course : { type : Schema.Types.ObjectId , ref : 'Course'},
     title : { type : String , required : true},
-    slug : { type : String , required : true},
     type : { type : String , required : true},
     body : { type : String , required : true},
-    price : { type : String , required : true},
-    images : { type : Object , required : true},
-    thumb : { type : String , required : true},
-    tags : { type : String , required : true},
     time : { type : String , default : '00:00:00'},
+    number : { type : Number , required : true},
+    videoUrl : { type : String , required : true},
+    downloadCount : { type : Number , default : 0},
     viewCount : { type : Number , default : 0},
     commentCount : { type : String , default : 0},
 } , { timestamps : true });
 
-courseSchema.plugin(mongoosePaginate);
+episodeSchema.plugin(mongoosePaginate);
 
-courseSchema.methods.typeToPersian = function() {
+episodeSchema.methods.typeToPersian = function() {
     switch (this.type) {
         case 'cash':
                 return 'نقدی'
@@ -36,4 +34,4 @@ courseSchema.methods.typeToPersian = function() {
     }
 }
 
-module.exports = mongoose.model('Course' , courseSchema);
+module.exports = mongoose.model('Episode' , episodeSchema);
