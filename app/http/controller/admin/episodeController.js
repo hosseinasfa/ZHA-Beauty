@@ -99,10 +99,10 @@ class episodeController extends controller {
     }
 
     async updateCourseTime(courseId) {
-        let course = await Course.findById(courseId)
-        let episodes = await Episode.find({ course : courseId });
+        let course = await Course.findById(courseId).populate('episodes').exec();
 
-        course.set({ time : this.getTime(episodes)});
+
+        course.set({ time : this.getTime(course.episodes)});
         await course.save();
     }
 

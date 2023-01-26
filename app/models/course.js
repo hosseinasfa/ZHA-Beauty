@@ -36,4 +36,11 @@ courseSchema.methods.typeToPersian = function() {
     }
 }
 
+courseSchema.virtual('episodes' , {
+    ref : 'Episode',
+    foreignField : 'course',
+    localField : '_id' 
+    
+});
+
 module.exports = mongoose.model('Course' , courseSchema);

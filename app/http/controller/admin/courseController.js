@@ -114,10 +114,11 @@ class courseController extends controller {
         try {
             this.isMongoId(req.params.id);
 
-            let course = await Course.findById(req.params.id);
+            let course = await Course.findById(req.params.id).populate('episodes').exec();
             if( ! course) this.error('چنین دوره ای وجود ندارد' , 404);
     
             //delete episodes
+            course.episodes.forEach(episode => episode.remove());
             
             //delete images
             Object.values(course.images).forEach(image => fs.unlinkSync(`./public${image}`));
