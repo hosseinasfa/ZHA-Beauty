@@ -18,7 +18,7 @@ const courseSchema = mongoose.Schema({
     time : { type : String , default : '00:00:00'},
     viewCount : { type : Number , default : 0},
     commentCount : { type : String , default : 0},
-} , { timestamps : true });
+} , { timestamps : true , toJSON : { virtuals : true }});
 
 courseSchema.plugin(mongoosePaginate);
 
@@ -34,6 +34,10 @@ courseSchema.methods.typeToPersian = function() {
             return 'رایگان'    
             break;
     }
+}
+
+courseSchema.methods.path = function() {
+    return `/courses/${this.slug}`;
 }
 
 courseSchema.virtual('episodes' , {
