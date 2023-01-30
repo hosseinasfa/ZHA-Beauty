@@ -8,14 +8,15 @@ const bcrypt = require('bcrypt');
 class courseController extends controller {
     async index(req , res , next) {
         try {
-            res.render('home/courses');
+            return res.json(req.query);
+            res.render('home/index' , { courses });
         } catch (err) {
             next(err);
         }
     }
 
     async single(req , res) {
-        let course = await Course.findOne({ slug : req.params.course })
+        let course = await Course.findOneAndUpdate({ slug : req.params.course } , { $inc : { viewCount : 1 }})
                                 .populate([
                                     {
                                          path : 'user' , select : 'name'
@@ -33,7 +34,20 @@ class courseController extends controller {
                                         match : {
                                             parent : { $eq : null },
                                             approved : true
-                                        }
+                                        },
+                                        populate : [
+                                            {
+                                                path : 'user' , 
+                                                select : 'name'
+                                            },
+                                            {
+                                                path : 'comments',
+                                                match : {
+                                                    approved : true
+                                                },
+                                                populate : { path : 'user' , select : 'name'}
+                                            }
+                                        ]
                                     }
                                 ]);
 
@@ -53,6 +67,8 @@ class courseController extends controller {
 
             let filePath = path.resolve(`./public/download/A@S$Sdfsf!#gdfkjsdKX#$/${episode.videoUrl}`);
             if(! fs.existsSync(filePath)) this.error('چنین فایلی برای دانلود وجود ندارد.' , 404);
+
+            await episode.inc('downloadCount');
 
         res.download(filePath);
         } catch (err) {

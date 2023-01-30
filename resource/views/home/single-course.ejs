@@ -21,7 +21,7 @@
                             <a href="#">
                                 <div class="tb-thumb">
                                     <img src="<%= course.images[1080] %>" alt="">
-                                    <span class="tb-publish font-noraure-3">25 اردیبهشت</span>
+                                    <span class="tb-publish font-noraure-3"> <%= date(course.createdAt).format('jD jMMMM jYYYY') %></span>
                                 </div>
                             </a>
                             <div class="tb-content7">
@@ -113,14 +113,14 @@
                             </div>
                         </div>
 
-                        <%- include(viewPath('layouts/comments') , { subject : course }) -%>
+                        <%- include(viewPath('layouts/comments') , { subject : course , comments : course.comments }) -%>
 
                  
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
                         <div class="widget_searchform_content active">
-                            <form action="#">
-                                <input type="text" value="" name="s" placeholder="جستجو...">
+                            <form action="/courses" method="get">
+                                <input type="text" value="" name="search" placeholder="جستجو...">
                                 <input type="submit" value="جستجو">
                             </form>
                         </div>

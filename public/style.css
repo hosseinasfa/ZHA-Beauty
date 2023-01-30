@@ -3847,6 +3847,7 @@ a.o-back-to:hover {
   text-transform: uppercase;
   top: 0;
   transition: all 0.4s ease 0s;
+  direction: rtl;
 }
 .blog-area .tb-post-item .tb-thumb {
   line-height: 0;
@@ -3892,6 +3893,16 @@ a.o-back-to:hover {
 .blog-area .widget_searchform_content > form > input[type="submit"] {
   background: #ef6644 none repeat scroll 0 0;
   border: 1px solid #ef6644;
+  color: #ffffff;
+  position: absolute;
+  left: 0;
+  text-transform: uppercase;
+  top: 0;
+  width: 80px;
+}
+.blog-area .widget_searchform_content > form > input[type="button"] {
+  background: #446fef none repeat scroll 0 0;
+  border: 1px solid #1c1fda;
   color: #ffffff;
   position: absolute;
   left: 0;

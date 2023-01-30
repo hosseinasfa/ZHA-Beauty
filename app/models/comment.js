@@ -13,9 +13,32 @@ const commentSchema = mongoose.Schema({
     episode : { type : Schema.Types.ObjectId , ref : 'Episode' , default : undefined},
     comment : { type : String , required  : true}
 
-} , { timestamps : true });
+} , { timestamps : true , toJSON : { virtuals : true } });
 
 commentSchema.plugin(mongoosePaginate);
+
+commentSchema.virtual('comments' , {
+    ref : 'Comment',
+    foreignField : 'parent',
+    localField : '_id' 
+    
+});
+
+const commentBelong = doc => {
+    if(doc.course) 
+        return 'Course';
+    else if(doc.episode)
+        return 'Episode'; 
+}
+
+
+commentSchema.virtual('belongTo' , {
+    ref : commentBelong,
+    localField : doc => commentBelong(doc).toLowerCase(),
+    foreignField : '_id',
+    justOne : true
+    
+});
 
 
 module.exports = mongoose.model('Comment' , commentSchema);

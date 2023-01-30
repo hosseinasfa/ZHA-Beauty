@@ -14,23 +14,25 @@
 
                         <div role="tabpanel" class="tab-pane" id="profile">
                             <form class="form-horizontal" action="/comment" method="post">
+                                <% comments.forEach(comment => { %> 
                                 <div id="review">
                                     <table class="table table-striped table-bordered">
                                         <tr>
                                             <td style="width: 50%;">
-                                                <strong>حسین اصفا</strong>
+                                                <strong><%= comment.user.name %></strong>
                                             </td>
-                                            <td class="text-right">24 اردیبهشت 1390</td>
+                                            <td class="text-right"><%= date(comment.createdAt).fromNow() %> </td>
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <p class="text an-text">با این قرارداد، مسی تا سال 2021 در نوکمپ باقی خواهد ماند و از ابتدای فصل جدید و بعد از مدت ها انتظار، شاهد رونمایی از بلوگرانای تحت فرماندهی والورده خواهیم شد.</p>
+                                                <p class="text an-text"><%- comment.comment %></p>
                                             </td>
                                             
                                         </tr>
                                         
                                     </table>
                                 </div>
+                                <% }) %>
                                 <h2 class="write">شما هم نظر دهید.</h2>
                                 <%- include(viewPath('layouts/error-messages')) -%>
                                 <div class="form-group required">

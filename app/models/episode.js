@@ -16,7 +16,7 @@ const episodeSchema = mongoose.Schema({
     videoUrl : { type : String , required : true},
     downloadCount : { type : Number , default : 0},
     viewCount : { type : Number , default : 0},
-    commentCount : { type : String , default : 0},
+    commentCount : { type : Number , default : 0},
 } , { timestamps : true });
 
 episodeSchema.plugin(mongoosePaginate);
@@ -52,6 +52,15 @@ episodeSchema.methods.download = function(check , canUserUse) {
     let hash = bcrypt.hashSync(text , salt);
 
     return status ? `/download/${this.id}?mac=${hash}&t=${timestamps}` : '#';
+}
+
+episodeSchema.methods.path = function() {
+    return `${this.course.path()}/${this.nember}`;
+}
+
+episodeSchema.methods.inc = async function(field , num = 1) {
+    this[field] += num;
+    await this.save();
 }
 
 module.exports = mongoose.model('Episode' , episodeSchema);
