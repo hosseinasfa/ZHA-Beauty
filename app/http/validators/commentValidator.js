@@ -1,0 +1,21 @@
+const validator = require('./validator');
+const { check } = require('express-validator');
+const Course = require('app/models/course');
+const path = require('path');
+
+class commentValidator extends validator {
+    handle() {
+       return [
+
+        check('comment')
+            .isLength({ min : 10})
+            .withMessage(' متن نظر نمی تواند کمتر از 10 کاراکتر باشد'),
+
+            ]
+    }
+
+
+
+}
+
+module.exports = new commentValidator();

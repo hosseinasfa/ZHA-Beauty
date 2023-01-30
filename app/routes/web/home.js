@@ -6,6 +6,12 @@ const router = express.Router();
 const homeController = require('app/http/controller/homeController');
 const courseController = require('app/http/controller/courseController');
 
+//Validators
+const commentValidator = require('app/http/validators/commentValidator');
+
+// Middleware
+const redirectIfNotAuthenticated = require('app/http/middleware/redirectIfNotAuthenticated');
+
 
 router.get('/logout' , (req , res) => {
   req.logout(function(err) {
@@ -22,6 +28,9 @@ router.get('/' , homeController.index);
 router.get('/about-us' , homeController.about);
 router.get('/courses' , courseController.index);
 router.get('/courses/:course' , courseController.single);
+
+router.post('/comment' , redirectIfNotAuthenticated.handle , commentValidator.handle() , homeController.comment)
+router.get('/download/:episode' , courseController.download);
 
 
 

@@ -50,4 +50,12 @@ userSchema.virtual('courses' , {
 });
 
 
+userSchema.methods.isVip = function() {
+    return true;
+}
+
+userSchema.methods.checkLearning = async function(course) {
+    return true;
+}
+
 module.exports = mongoose.model('User' , userSchema);

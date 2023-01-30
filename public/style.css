@@ -4239,15 +4239,13 @@ a.o-back-to:hover {
     font-weight: 500;
     line-height: 23px;
     margin: 0;
-    max-height: 300px;
-    overflow: auto;
     padding: 15px;
     text-align: justify;
     direction:rtl
 }
 .single-product-area.sit .table.table-bordered td {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-    text-align: left;
+    text-align: right;
 }
 .single-product-area.sit .text .text.an-text{
     position: relative;
@@ -4300,7 +4298,7 @@ a.o-back-to:hover {
 .single-product-area.sit .text .form-group label {
     margin: 0;
     padding: 0 0 10px;
-    text-align: left;
+    text-align: right;
     width: 100%;
 }
 .single-product-area.sit .text div.required .control-label::before {

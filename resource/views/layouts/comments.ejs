@@ -1,0 +1,57 @@
+<% if(auth.check) { %>
+<section class="single-product-area sit">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="text">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" dir="rtl">
+                            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">نظرات</a>
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content tab-con2">
+
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                            <form class="form-horizontal" action="/comment" method="post">
+                                <div id="review">
+                                    <table class="table table-striped table-bordered">
+                                        <tr>
+                                            <td style="width: 50%;">
+                                                <strong>حسین اصفا</strong>
+                                            </td>
+                                            <td class="text-right">24 اردیبهشت 1390</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <p class="text an-text">با این قرارداد، مسی تا سال 2021 در نوکمپ باقی خواهد ماند و از ابتدای فصل جدید و بعد از مدت ها انتظار، شاهد رونمایی از بلوگرانای تحت فرماندهی والورده خواهیم شد.</p>
+                                            </td>
+                                            
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                <h2 class="write">شما هم نظر دهید.</h2>
+                                <%- include(viewPath('layouts/error-messages')) -%>
+                                <div class="form-group required">
+                                    <div class="col-sm-12">
+                                        <label class="control-label" for="input-review">نظر</label>
+                                        <input type="hidden" name="<%= subject.constructor.modelName.toLowerCase() %>" value="<%= subject.id %>">
+                                        <textarea id="input-review" class="form-control" rows="5" name="comment"></textarea>
+                                    
+                                    </div>
+                                </div>
+                                <div class="buttons si-button">
+                                    <div class="pull-right">
+                                        <button id="button-review" class="btn btn-primary" data-loading-text="Loading..." type="submit">ثبت نظر</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<% } %>

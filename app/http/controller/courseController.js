@@ -1,5 +1,9 @@
 const controller = require('./controller');
 const Course = require('app/models/course');
+const Episode = require('app/models/episode');
+const path = require('path');
+const fs = require('fs');
+const bcrypt = require('bcrypt');
 
 class courseController extends controller {
     async index(req , res , next) {
@@ -16,14 +20,73 @@ class courseController extends controller {
                                     {
                                          path : 'user' , select : 'name'
                                     } ,
-                                    'episodes'
+                                    {
+                                        path : 'episodes',
+                                        options : {
+                                            sort : { number : 1 }
+                                        }
+                                    }
+                                ])
+                                .populate([
+                                    {
+                                        path : 'comments',
+                                        match : {
+                                            parent : { $eq : null },
+                                            approved : true
+                                        }
+                                    }
                                 ]);
 
-        return res.json(course);
-
-        res.render('home/single-course');
+        let canUserUse = await this.canUse(req , course);
+        
+        res.render('home/single-course' , { course , canUserUse });
     }
 
+    async download(req , res , next) {
+        try {
+            this.isMongoId(req.params.episode);
+
+            let episode = await Episode.findById(req.params.episode);
+            if(! episode) this.error('چنین فایلی برای این جلسه وجود ندارد' , 404);
+
+            if(! this.checkHash(req , episode)) this.error('اعتبار لینک شما به پایان رسیده است.' , 403)
+
+            let filePath = path.resolve(`./public/download/A@S$Sdfsf!#gdfkjsdKX#$/${episode.videoUrl}`);
+            if(! fs.existsSync(filePath)) this.error('چنین فایلی برای دانلود وجود ندارد.' , 404);
+
+        res.download(filePath);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    async canUse(req , course) {
+        let canUse = false;
+        if(req.isAuthenticated()) {
+            switch (course.type) {
+                case 'vip':
+                    canUse = req.user.isVip();                    
+                    break;
+                    case 'cash':
+                        canUse = req.user.checkLearning(course);                    
+                        break;
+            
+                default:
+                    canUse = true;
+                    break;
+            }
+        }
+        return canUse;
+    }
+
+    checkHash(req , episode) {
+        let timestamps = new Date().getTime();
+        if(req.query.t < timestamps) return false;
+
+        let text = `GH#4%73@2WSdcfnasdkad${episode.id}${req.query.t}`;
+
+        return bcrypt.compareSync(text , req.query.mac);
+    }
 
 
 }

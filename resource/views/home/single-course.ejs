@@ -1,0 +1,419 @@
+        <!-- pages-title-start -->
+        <section class="contact-img-area" style="background-image: url(img/bg-banner/bg-pagetitle.jpg)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="con-text">
+                            <h2 class="page-title"><%= course.title %></h2>
+                            <p><a href="#">خانه</a> | <%= course.title %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+		<!-- pages-title-end -->
+		<!-- Blog content section start -->
+		<section class="blog-area bd-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                        <div class="tb-post-item ma-nn">
+                            <a href="#">
+                                <div class="tb-thumb">
+                                    <img src="<%= course.images[1080] %>" alt="">
+                                    <span class="tb-publish font-noraure-3">25 اردیبهشت</span>
+                                </div>
+                            </a>
+                            <div class="tb-content7">
+                                <div class="blog-info">
+                                    <span class="author-name">
+                                        <i class="fa fa-user"></i>
+                                        توسط
+                                        <a href="#"><%= course.user.name %></a>
+                                    </span>
+                                    <span class="categories">
+                                        <i class="fa fa-tag"></i>
+                                        <a href="#">پوشاک</a>
+                                        ,
+                                        <a href="#">مد روز</a>
+                                    </span>
+                                    <span class="comments-number">
+                                        <i class="fa fa-comment"></i>
+                                        <a href="#">8 نظر</a>
+                                    </span>
+                                </div>
+                                <h4 class="tb-titlel">اولین گام خانه تکانی به سبک بارسا</h4>
+                                <div class="blog-desc">
+                                    <p><%- course.body %></p>
+                                </div>
+                                
+                                    <div class="blog-desc" style="margin-top: 5%;">
+                                        <% if(auth.check) { 
+                                             if(course.type == 'vip') {  
+                                                 if(! canUserUse) { %> 
+                                                    <p style="color: red;">برای مشاهده این دوره نیاز است عضویت ویژه را تهیه کنید.</p>
+                                                <% } 
+                                             } else if(course.type == 'cash') { 
+                                                     if(! canUserUse) { %> 
+                                                        <p style="color: red;">برای مشاهده این دوره نیاز است به صورت نقدی دوره را تهیه کنید.</p>
+                                                        <% } else { %> 
+                                                            <p style="color: rgb(27, 197, 27);">شما در این دوره ثبت نام کرده اید.</p>
+                                                        <% }
+                                                 } 
+
+                                          } else { %> 
+                                            <p style="color: red;">برای مشاهده این دوره نیاز است ابتدا وارد سایت شوید.</p>
+                                            <% } %> 
+                                    </div>
+                        
+		<!-- wishlist content section start -->
+		<div class="shopping-cart-area nr-wish-area">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="s-cart-all">
+                            <div class="cart-form table-responsive">
+                                <table id="shopping-cart-table" class="data-table cart-table">
+                                    <tr>
+                                        <th class="low5">دانلود</th>
+                                        <th> زمان قسمت</th>
+                                        <th> عنوان قسمت </th>
+                                        <th class="low2"> شماره قسمت</th>
+                                    </tr>
+                                    <% course.episodes.forEach(episode => { %> 
+                                    <tr>
+                                        <td class="sop-cart">
+                                            <div class="last-cart l-mrgn wish">
+                                                <a class="las4" href="<%= episode.download(auth.check , canUserUse) %>"> دانلود</a>
+                                            </div>
+                                        </td>
+                                        
+                                        <td class="cen">
+                                            <span class="wishlist-in-stock"><%= episode.time %></span>
+                                        </td>
+                                        <td class="sop-cart">
+                                            <div class="tb-product-price font-noraure-3">
+                                                <span class="amount"><%= episode.title %></span>
+                                            </div>
+                                        </td>
+                                        <td class="sop-cart">
+                                            <div class="tb-product-price font-noraure-3">
+                                                <span class="amount"><a href="#"><h4><%= episode.number %></h4></a></span>
+                                            </div>
+                                        </td>
+                                       
+                                    </tr>
+                                    <% }) %>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+		<!-- wishlist  content section end -->
+                            </div>
+                        </div>
+
+                        <%- include(viewPath('layouts/comments') , { subject : course }) -%>
+
+                 
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                        <div class="widget_searchform_content active">
+                            <form action="#">
+                                <input type="text" value="" name="s" placeholder="جستجو...">
+                                <input type="submit" value="جستجو">
+                            </form>
+                        </div>
+                        <div class="zo-recent-posts2">
+                            <h3 class="wg-title">خرید دوره</h3>
+                            <ul dir="rtl">
+                                <li>
+                                    <p>برای خرید این دوره نیاز این دوره را با مبلغ 600000 تومان خریداری نمایید.</p>
+                                </li>
+                                
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="last-cart-con bd-icon">
+                                        <input class="wpcf7" type="submit" value="خرید دوره">
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="zo-recent-posts2 os4">
+                            <h3 class="wg-title">گروه‌ها</h3>
+                            <ul dir="rtl">
+                                <li>
+                                    <a href="#">پوشاک</a>
+                                </li>
+                                <li>
+                                    <a href="#">کیف و کفش</a>
+                                </li>
+                                <li>
+                                    <a href="#">مد روز</a>
+                                </li>
+                                <li>
+                                    <a href="#">بدون گروه</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+		<!-- Blog content section end -->
+        <!-- quick view start -->
+        <div class="quick-view modal fade in" id="quick-view">
+            <div class="container">
+                <div class="row">
+                    <div id="view-gallery" class="owl-carousel product-slider owl-theme">
+                        <div class="col-xs-12">
+                            <div class="d-table">
+                                <div class="d-tablecell">
+                                    <div class="modal-dialog">
+                                        <div class="main-view modal-content">
+                                            <div class="modal-footer" data-dismiss="modal">
+                                                <span>x</span>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-5">
+                                                    <div class="quick-image">
+                                                        <div class="single-quick-image tab-content text-center">
+                                                            <div class="tab-pane  fade in active" id="sin-pro-1">
+                                                                <img src="img/quick-view/10.jpg" alt="" />
+                                                            </div>
+                                                            <div class="tab-pane fade in" id="sin-pro-2">
+                                                                <img src="img/quick-view/10.jpg" alt="" />
+                                                            </div>
+                                                            <div class="tab-pane fade in" id="sin-pro-3">
+                                                                <img src="img/quick-view/10.jpg" alt="" />
+                                                            </div>
+                                                            <div class="tab-pane fade in" id="sin-pro-4">
+                                                                <img src="img/quick-view/10.jpg" alt="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="quick-thumb">
+                                                            <div class="nav nav-tabs">
+                                                                <ul>
+                                                                    <li><a data-toggle="tab" href="#sin-pro-1"> <img src="img/quick-view/10.jpg" alt="quick view" /> </a></li>
+                                                                    <li><a data-toggle="tab" href="#sin-pro-2"> <img src="img/quick-view/10.jpg" alt="quick view" /> </a></li>
+                                                                    <li><a data-toggle="tab" href="#sin-pro-3"> <img src="img/quick-view/10.jpg" alt="quick view" /> </a></li>
+                                                                    <li><a data-toggle="tab" href="#sin-pro-4"> <img src="img/quick-view/10.jpg" alt="quick view" /> </a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-7">
+                                                    <div class="quick-right">
+                                                        <div class="quick-right-text">
+                                                            <h3><strong>عنوان محصول1</strong></h3>
+                                                            <div class="rating">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star-half-o"></i>
+                                                                <i class="fa fa-star-o"></i>
+
+                                                            </div>
+                                                            <div class="amount">
+                                                                <h4>65000 تومان</h4>
+                                                            </div>
+                                                            <p>ارنستو والورده در روز معارفه خود در مورد مسی گفت: "سرمربی مسی بودن تجربه ای منحصر به فرد است زیرا او بهترین بازیکنی است که من تا به حال در دنیای فوتبال دیده ام و به نظر من حتی زمانی که شما فکر می کنید، دیگر مسی به نقطه اوج دوران حرفه ای خود رسیده است. او دوباره با رونمایی از یک هنرنمایی جدید شما را شگفت زده می کند."</p>
+                                                            <div class="row m-p-b">
+                                                                <div class="col-sm-12 col-md-6">
+                                                                    <div class="por-dse responsive-strok clearfix">
+                                                                        <ul dir="rtl">
+                                                                            <li><span>دسترسی</span><strong>:</strong> <span style="text-align:right;padding-right:10px">موجود</span></li>
+                                                                            <li><span>وضعیت</span><strong>:</strong> <span style="text-align:right;padding-right:10px">محصول جدید</span></li>
+                                                                            <li><span>گروه</span><strong>:</strong> <a href="#">مردانه</a> <a href="#">مد</a> <a href="#">پیراهن</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 col-md-6">
+                                                                    <div class="por-dse color">
+                                                                        <ul dir="rtl">
+                                                                            <li><span>رنگ</span><strong>:</strong> <a href="#">قرمز</a> <a href="#">سبز</a> <a href="#">آبی</a> <a href="#">نارنجی</a></li>
+                                                                            <li><span>اندازه</span><strong>:</strong>  <a href="#">کوچک</a> <a href="#">متوسط</a> <a href="#">بزرگ</a> <a href="#">خیلی بزرگ</a></li>
+                                                                            <li><span>توضیحات</span><strong>:</strong> <a href="#">مردانه</a> <a href="#">مد</a> <a href="#">پیراهن</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="dse-btn">
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 col-md-6 pull-right">
+                                                                        <div class="por-dse clearfix">
+                                                                            <ul>
+                                                                                <li class="share-btn qty clearfix">
+                                                                                    <span>تعداد</span>
+                                                                                    <form action="#" method="POST">
+                                                                                        <div class="plus-minus">
+                                                                                            <a class="dec qtybutton">-</a>
+                                                                                            <input type="text" value="02" name="qtybutton" class="plus-minus-box">
+                                                                                            <a class="inc qtybutton">+</a>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </li>
+                                                                                <li class="share-btn clearfix">
+                                                                                    <span>اشتراک گذاری</span>
+                                                                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                                                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                                                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                                                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                                                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-12 col-md-6 pull-right">
+                                                                        <div class="por-dse clearfix responsive-othre">
+                                                                            <ul class="other-btn">
+                                                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                                                <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                                                                                <li><a href="#"><i class="fa fa-envelope-o"></i></a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="por-dse add-to" dir="rtl">
+                                                                            <a href="#">اضافه به سبد خرید</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single-product item end -->
+                        <div class="col-xs-12">
+                            <div class="d-table">
+                                <div class="d-tablecell">
+                                    <div class="modal-dialog">
+                                        <div class="main-view modal-content">
+                                            <div class="modal-footer" data-dismiss="modal">
+                                                <span>x</span>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-5">
+                                                    <div class="quick-image">
+                                                        <div class="single-quick-image tab-content text-center">
+                                                            <div class="tab-pane  fade in active" id="sin-pro-5">
+                                                                <img src="img/quick-view/10.jpg" alt="" />
+                                                            </div>
+                                                            <div class="tab-pane fade in" id="sin-pro-6">
+                                                                <img src="img/quick-view/10.jpg" alt="" />
+                                                            </div>
+                                                            <div class="tab-pane fade in" id="sin-pro-7">
+                                                                <img src="img/quick-view/10.jpg" alt="" />
+                                                            </div>
+                                                            <div class="tab-pane fade in" id="sin-pro-8">
+                                                                <img src="img/quick-view/10.jpg" alt="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="quick-thumb">
+                                                            <div class="nav nav-tabs">
+                                                                <ul>
+                                                                    <li><a data-toggle="tab" href="#sin-pro-5"> <img src="img/quick-view/10.jpg" alt="quick view" /> </a></li>
+                                                                    <li><a data-toggle="tab" href="#sin-pro-6"> <img src="img/quick-view/10.jpg" alt="quick view" /> </a></li>
+                                                                    <li><a data-toggle="tab" href="#sin-pro-7"> <img src="img/quick-view/10.jpg" alt="quick view" /> </a></li>
+                                                                    <li><a data-toggle="tab" href="#sin-pro-8"> <img src="img/quick-view/10.jpg" alt="quick view" /> </a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-7">
+                                                    <div class="quick-right">
+                                                        <div class="quick-right-text">
+                                                            <h3><strong>عنوان محصول2</strong></h3>
+                                                            <div class="rating">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star-half-o"></i>
+                                                                <i class="fa fa-star-o"></i>
+
+                                                            </div>
+                                                            <div class="amount">
+                                                                <h4>65000 تومان</h4>
+                                                            </div>
+                                                            <p>ارنستو والورده در روز معارفه خود در مورد مسی گفت: "سرمربی مسی بودن تجربه ای منحصر به فرد است زیرا او بهترین بازیکنی است که من تا به حال در دنیای فوتبال دیده ام و به نظر من حتی زمانی که شما فکر می کنید، دیگر مسی به نقطه اوج دوران حرفه ای خود رسیده است. او دوباره با رونمایی از یک هنرنمایی جدید شما را شگفت زده می کند."</p>
+                                                            <div class="row m-p-b">
+                                                                <div class="col-sm-6">
+                                                                    <div class="por-dse">
+                                                                        <ul>
+                                                                            <li><span>دسترسی</span><strong>:</strong> موجود</li>
+                                                                            <li><span>وضعیت</span><strong>:</strong> محصول جدید</li>
+                                                                            <li><span>دسته بندی</span><strong>:</strong> <a href="#">مردانه</a> <a href="#">مد</a> <a href="#">پیراهن</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="por-dse color">
+                                                                        <ul>
+                                                                            <li><span>رنگ</span><strong>:</strong> <a href="#">قرمز</a> <a href="#">سبز</a> <a href="#">آبی</a> <a href="#">نارنجی</a></li>
+                                                                            <li><span>اندازه</span><strong>:</strong>  <a href="#">کوچک</a> <a href="#">متوسط</a> <a href="#">بزرگ</a> <a href="#">خیلی بزرگ</a></li>
+                                                                            <li><span>توضیحات</span><strong>:</strong> <a href="#">مردانه</a> <a href="#">مد</a> <a href="#">پیراهن</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="dse-btn">
+                                                                <div class="row">
+                                                                    <div class="col-sm-6 pull-right">
+                                                                        <div class="por-dse">
+                                                                            <ul>
+                                                                                <li class="share-btn qty clearfix">
+                                                                                    <span>تعداد</span>
+                                                                                    <form action="#" method="POST">
+                                                                                        <div class="plus-minus">
+                                                                                            <a class="dec qtybutton">-</a>
+                                                                                            <input type="text" value="02" name="qtybutton" class="plus-minus-box">
+                                                                                            <a class="inc qtybutton">+</a>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </li>
+                                                                                <li class="share-btn clearfix">
+                                                                                    <span>اشتراک گذاری</span>
+                                                                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                                                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                                                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                                                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                                                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6 pull-right">
+                                                                        <div class="por-dse clearfix">
+                                                                            <ul class="other-btn">
+                                                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                                                <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                                                                                <li><a href="#"><i class="fa fa-envelope-o"></i></a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="por-dse add-to" dir="rtl">
+                                                                            <a href="#">اضافه به سبد خرید</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single-product item end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- quick view end -->

@@ -1,5 +1,6 @@
 const controller = require('./controller');
-const Course = require('app/models/course')
+const Course = require('app/models/course');
+const Comment = require('app/models/comment');
 
 class homeController extends controller {
     async index(req , res , next) {
@@ -14,6 +15,25 @@ class homeController extends controller {
     async about(req , res , next) {
         try {
             res.render('home/about');
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    async comment(req , res , next) {
+        try {
+            let status = await this.validationData(req);
+            if(! status) return this.back(req,res);
+            
+            let newComment = new Comment({
+                user : req.user.id,
+                ...req.body
+            });
+
+            await newComment.save();
+
+            return this.back(req , res);
+
         } catch (err) {
             next(err);
         }
