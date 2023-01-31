@@ -145,7 +145,7 @@ class courseController extends controller {
             addressImages[size] = this.getUrlImage(`${image.destination}/${imageName}`);
 
             sharp(image.path)
-                .resize(size , null)
+                .resize(size , 360)//each parameter can be null
                 .toFile(`${image.destination}/${imageName}`);
         }
 
