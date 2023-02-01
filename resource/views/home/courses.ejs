@@ -53,28 +53,49 @@
         </section>
 		<!-- slider section end -->
 
+        <%
+
+        let { search , type , order , category } = req.query;
+
+        %>
+
+        
         <form action="/courses" method="get">
-            <div class="row">
-                <div class="form-group col-md-2 col-md-offset-5" style=" direction: rtl;">
-                    <input type="hidden" name="search" value="">
-                    <span>عبارت جستجو شده :    <a href="#" class="btn">حذف</a></span>
+            <% if(search) { %> 
+                <div class="row">
+                    <div class="form-group col-md-2 col-md-offset-5" style=" direction: rtl;">
+                        <input type="hidden" name="search" value="<%= search %>">
+                        <span>عبارت جستجو شده :  <%= search %>  <a href="/courses?<%= type ? 'type=' + type : '' %><%= order ? '&order=1' : '' %>></a> class="btn">حذف</a></span>
+                    </div>
                 </div>
-            </div>
+            <% } %>
 
         <div class="row">    
             <div class="form-group col-md-2 col-md-offset-5"  style="direction: rtl;">
                 <select name="type" class="form-control">
                     <option value="all">همه دوره ها</option>
-                    <option value="vip">اعضای ویژه</option>
-                    <option value="cash">نقدی</option>
-                    <option value="free">رایگان</option>
+                    <option value="vip" <%= type === 'vip' ? 'selected' : '' %>>اعضای ویژه</option>
+                    <option value="cash" <%= type === 'cash' ? 'selected' : '' %>>نقدی</option>
+                    <option value="free" <%= type === 'free' ? 'selected' : '' %>>رایگان</option>
+                </select>
+            </div>
+        </div>
+
+        
+        <div class="row">    
+            <div class="form-group col-md-2 col-md-offset-5"  style="direction: rtl;">
+                <select name="category" class="form-control">
+                    <option value="all">همه دسته ها</option>
+                    <% categories.forEach(cate => { %> 
+                    <option value="<%= cate.slug %>" <%= cate.slug === category ? 'selected' : '' %>><%= cate.name %></option>
+                    <% }) %>
                 </select>
             </div>
         </div>
 
         <div class="form-group col-md-2 col-md-offset-5">
             <label class="checkbox-inline">
-                <input type="checkbox" name="order" value="1" class="ml-2">از اول به آخر
+                <input type="checkbox" name="order" value="1" class="ml-2" <%= order === '1' ? 'checked' : '' %>>از اول به آخر
             </label>
         </div>
 
@@ -101,38 +122,45 @@
 
 
                   
-
-				<div class="row">
-					<div id="blog" class="owl-carousel product-slider owl-theme re-blog">
-                        <% courses.forEach(course => { %>
-						<div class="col-xs-12">
-							<div class="blog-container-inner">
-                                <div class="post-thumb">
-                                    <a href="<%= course.path() %>"><img class="attachment-blog-list wp-post-image" alt="<%= course.thumb %>" src="<%= course.thumb %>"></a>
-                                </div>
-                                <div class="visual-inner">
-                                    <h2 class="blog-title">
-                                        <a href="<%= course.path() %>"><%= course.title %></a>
-                                    </h2>
-                                    <div class="blog-meta">
-                                        <span class="post-category">
-                                            
-                                            <a rel="category" href="<%= course.path() %>">مردانه</a>
-                                        </span>
-                                        <span class="published">
-                                            <i class="fa fa-clock-o"></i>
-                                            <%= date(course.createdAt).format('jD jMMMM jYYYY') %>
-                                        </span>
-                                        <span class="published2"><%= course.viewCount %> بازدید</span>
+                <% if(courses.length) { %>
+                    <div class="row">
+                        <div id="blog" class="owl-carousel product-slider owl-theme re-blog">
+                            <% courses.forEach(course => { %>
+                            <div class="col-xs-12">
+                                <div class="blog-container-inner">
+                                    <div class="post-thumb">
+                                        <a href="<%= course.path() %>"><img class="attachment-blog-list wp-post-image" alt="<%= course.thumb %>" src="<%= course.thumb %>"></a>
                                     </div>
-                                    <div class="blog-content"><%= course.body.substr(0,100) %></div>
+                                    <div class="visual-inner">
+                                        <h2 class="blog-title">
+                                            <a href="<%= course.path() %>"><%= course.title %></a>
+                                        </h2>
+                                        <div class="blog-meta">
+                                            <span class="post-category">
+                                                
+                                                <a rel="category" href="<%= course.path() %>">مردانه</a>
+                                            </span>
+                                            <span class="published">
+                                                <i class="fa fa-clock-o"></i>
+                                                <%= date(course.createdAt).format('jD jMMMM jYYYY') %>
+                                            </span>
+                                            <span class="published2"><%= course.viewCount %> بازدید</span>
+                                        </div>
+                                        <div class="blog-content"><%- course.body.substr(0,100) %></div>
+                                    </div>
                                 </div>
                             </div>
-						</div>
-                        <% }) %>
-						<!-- single blog item end -->
-					</div>
-				</div>
+                            <% }) %>
+                            <!-- single blog item end -->
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="row" style="text-align: center;">
+                        <h2>دوره ای یافت نشد</h2>
+                    </div>
+                <% } %>
+
+
 			</div>
 		</section>
 		<!-- blog section end -->

@@ -42,7 +42,7 @@
                                         <a href="#">8 نظر</a>
                                     </span>
                                 </div>
-                                <h4 class="tb-titlel">اولین گام خانه تکانی به سبک بارسا</h4>
+                                <h4 class="tb-titlel"><%= course.title %></h4>
                                 <div class="blog-desc">
                                     <p><%- course.body %></p>
                                 </div>
@@ -124,35 +124,62 @@
                                 <input type="submit" value="جستجو">
                             </form>
                         </div>
+
+                        <div class="blog-desc" style="margin-top: 5%;">
+                            <% if(auth.check) { 
+                                 if(course.type == 'vip') {  
+                                    if(auth.user.isVip()) { %> 
+                                        <p style="color: #1bc51b;">شما عضو ویژه هستید بنابراین میتوانید از این دوره استفاده کنید</p>
+                                    <% } else { %> 
+                                        <a href="#" style="color: red;">برای مشاهده این دوره نیاز است عضویت ویژه را تهیه کنید.</a>
+                                    <% }
+                                 } else if(course.type == 'cash') { 
+                                    if(canUserUse) { %>
+                                        <p style="color: rgb(27, 197, 27);">شما در این دوره ثبت نام کرده اید.</p>
+                                    <% } else { %>
+                                            
                         <div class="zo-recent-posts2">
                             <h3 class="wg-title">خرید دوره</h3>
                             <ul dir="rtl">
                                 <li>
-                                    <p>برای خرید این دوره نیاز این دوره را با مبلغ 600000 تومان خریداری نمایید.</p>
+                                    <p>برای خرید این دوره نیاز این دوره را با مبلغ <%= course.price %> تومان خریداری نمایید.</p>
                                 </li>
                                 
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="last-cart-con bd-icon">
+                                    <form class="last-cart-con bd-icon" action="/courses/payment" method="post">
+                                        <input type="hidden" name="course" value="<%= course.id %>">
                                         <input class="wpcf7" type="submit" value="خرید دوره">
-                                    </div>
+                                    </form>
                                 </div>
                             </ul>
                         </div>
+                        <% }
+                            } else { %> 
+                                    <p style="color: rgb(27, 197, 27);">این دوره رایگان است</p>
+                            <% }
+                              } else { %> 
+                                <a href="/auth/login" style="color: red;">برای مشاهده این دوره نیاز است ابتدا وارد سایت شوید.</a>
+                                <% } %> 
+                        </div>
+
+
                         <div class="zo-recent-posts2 os4">
                             <h3 class="wg-title">گروه‌ها</h3>
                             <ul dir="rtl">
-                                <li>
-                                    <a href="#">پوشاک</a>
-                                </li>
-                                <li>
-                                    <a href="#">کیف و کفش</a>
-                                </li>
-                                <li>
-                                    <a href="#">مد روز</a>
-                                </li>
-                                <li>
-                                    <a href="#">بدون گروه</a>
-                                </li>
+                                <% categories.forEach( category => { %> 
+                                    <li>
+                                        <a href="/courses?category=<%= category.slug %>"><%= category.name %></a>
+                                        <% if(category.childs) { %> 
+                                            <ul>
+                                                <% category.childs.forEach(cate => { %>
+                                                    <li style="margin-right: 10%;"> 
+                                                        <a href="/courses?category=<%= cate.slug %>"><%= cate.name %></a>
+                                                    </li>
+                                                <% }) %>
+                                            </ul>
+                                        <% } %>
+                                    </li>
+                                <% }) %>
                             </ul>
                         </div>
 

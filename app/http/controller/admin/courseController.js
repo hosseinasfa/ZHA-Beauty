@@ -1,5 +1,6 @@
 const controller = require('app/http/controller/controller');
 const Course = require('app/models/course');
+const Category = require('app/models/category');
 const fs = require ('fs');
 const path = require ('path');
 const sharp = require('sharp');
@@ -8,15 +9,16 @@ class courseController extends controller {
     async index(req , res , next) {
         try {
             let page = req.query.page || 1;
-            let courses = await Course.paginate({} , { page , sort : { createdAt : 1 } , limit : 2});
+            let courses = await Course.paginate({} , { page , sort : { createdAt : 1 } , limit : 10});
             res.render('admin/courses/index' , { title : 'دوره ها' , courses})
         } catch (err) {
             next(err);
         }
     };
 
-    create (req , res) {
-        res.render('admin/courses/create')
+    async create (req , res) {
+        let categories = await Category.find({});
+        res.render('admin/courses/create' , { categories })
     }
 
     async store(req , res , next) {
@@ -29,7 +31,7 @@ class courseController extends controller {
             }
     
        
-                //images
+
             
                 //create course
                 let images = this.imageResize(req.file);
@@ -61,8 +63,10 @@ class courseController extends controller {
 
             let course = await Course.findById(req.params.id);
             if( ! course) this.error('چنین دوره ای وجود ندارد' , 404);
+
+            let categories = await Category.find({});
     
-            return res.render('admin/courses/edit' , { course });
+            return res.render('admin/courses/edit' , { course , categories });
         } catch (err) {
             next(err);
         }
@@ -76,7 +80,7 @@ class courseController extends controller {
                     fs.unlinkSync(req.file.path);
                return this.back(req,res);
             }
-    
+            
             let objForUpdate = {};
     
             //set image thumb
@@ -159,9 +163,7 @@ class courseController extends controller {
     }
 
 
-    slug(title) {
-        return title.replace(/([^۰-۹آ-یa-z0-9]|-)+/g , "-")
-    }
+
 
 }
 
