@@ -50,14 +50,16 @@
                                     <div class="blog-desc" style="margin-top: 5%;">
                                         <% if(auth.check) { 
                                              if(course.type == 'vip') {  
-                                                 if(! canUserUse) { %> 
-                                                    <p style="color: red;">برای مشاهده این دوره نیاز است عضویت ویژه را تهیه کنید.</p>
+                                                 if(! auth.user.isVip()) { %> 
+                                                    <p style="color: #1bc51b;">شما عضو ویژه هستید بنابراین میتوانید از این دوره استفاده کنید</p>
+                                                <% } else { %>
+                                                    <p style="color: red;">برای مشاهده این دوره نیاز است عضویت ویژه را تهیه کنید</p>
                                                 <% } 
                                              } else if(course.type == 'cash') { 
-                                                     if(! canUserUse) { %> 
-                                                        <p style="color: red;">برای مشاهده این دوره نیاز است به صورت نقدی دوره را تهیه کنید.</p>
+                                                     if(auth.user.checkLearning(course.id)) { %> 
+                                                        <p style="color: #1bc51b;">شما در این دوره ثبت نام کرده اید.</p>
                                                         <% } else { %> 
-                                                            <p style="color: rgb(27, 197, 27);">شما در این دوره ثبت نام کرده اید.</p>
+                                                            <p style="color: red;">برای مشاهده این دوره نیاز است به صورت نقدی دوره را تهیه کنید.</p>
                                                         <% }
                                                  } 
 
@@ -83,7 +85,7 @@
                                     <tr>
                                         <td class="sop-cart">
                                             <div class="last-cart l-mrgn wish">
-                                                <a class="las4" href="<%= episode.download(auth.check , canUserUse) %>"> دانلود</a>
+                                                <a class="las4" href="<%= episode.download(req) %>"> دانلود</a>
                                             </div>
                                         </td>
                                         
@@ -134,7 +136,7 @@
                                         <a href="#" style="color: red;">برای مشاهده این دوره نیاز است عضویت ویژه را تهیه کنید.</a>
                                     <% }
                                  } else if(course.type == 'cash') { 
-                                    if(canUserUse) { %>
+                                    if(auth.user.checkLearning(course.id)) { %>
                                         <p style="color: rgb(27, 197, 27);">شما در این دوره ثبت نام کرده اید.</p>
                                     <% } else { %>
                                             

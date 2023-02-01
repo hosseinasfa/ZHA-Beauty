@@ -72,6 +72,22 @@ module.exports = class controller {
       slug(title) {
         return title.replace(/([^۰-۹آ-یa-z0-9]|-)+/g , "-")
     }
+
+    alert(req , data) {
+      let title = data.title || '',
+          text = data.text || '',
+          icon = data.icon || 'info',
+          button = data.button || null,
+          timer = data.timer || 3000;
+
+          req.flash('sweetalert' , { title , text , icon , button , timer });
+
+    }
+
+    alertAndBack(req, res , data) {
+      this.alert(req , data);
+      this.back(req , res);
+  }
 }
 
 

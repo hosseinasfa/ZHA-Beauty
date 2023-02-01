@@ -6,6 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcrypt');
 
+
 class courseController extends controller {
     async index(req , res , next) {
         try {
@@ -38,6 +39,44 @@ class courseController extends controller {
 
 
             res.render('home/courses' , { courses , categories , title : 'دوره ها'});
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    async payment(req , res , next) {
+        try {
+            this.isMongoId(req.body.course);
+
+            let course = await Course.findById(req.body.course);
+            if(! course) {
+                return this.alertAndBack(req , res , {
+                    title : 'دقت کنید',
+                    text : 'چنین دوره ای یافت نشد',
+                    icon : 'error'
+                })
+            }
+
+            if(await req.user.checkLearning(course)) {
+                return this.alertAndBack(req , res , {
+                    title : 'دقت کنید',
+                    text : 'شما قبلا در این دوره ثبت نام کرده اید',
+                    icon : 'error',
+                    button : 'خیلی خوب'
+                })
+            }
+
+            if(course.price == 0 && (course.type == 'vip' || course.type == 'free')) {
+                return this.alertAndBack(req, res, {
+                    title : 'دقت کنید',
+                    message : 'این دوره مخصوص اعضای ویژه یا رایگان است و قابل خریداری نیست',
+                    type : 'error',
+                    button : 'خیلی خوب'
+                });
+            }
+
+
+
         } catch (err) {
             next(err);
         }
@@ -79,11 +118,13 @@ class courseController extends controller {
                                     }
                                 ]);
 
+  
+
         let categories = await Category.find({ parent : null }).populate('childs').exec();
 
-        let canUserUse = await this.canUse(req , course);
+
         
-        res.render('home/single-course' , { course , canUserUse , categories });
+        res.render('home/single-course' , { course , categories });
     }
 
     async download(req , res , next) {
@@ -106,24 +147,7 @@ class courseController extends controller {
         }
     }
 
-    async canUse(req , course) {
-        let canUse = false;
-        if(req.isAuthenticated()) {
-            switch (course.type) {
-                case 'vip':
-                    canUse = req.user.isVip();                    
-                    break;
-                    case 'cash':
-                        canUse = req.user.checkLearning(course);                    
-                        break;
-            
-                default:
-                    canUse = true;
-                    break;
-            }
-        }
-        return canUse;
-    }
+
 
     checkHash(req , episode) {
         let timestamps = new Date().getTime();
