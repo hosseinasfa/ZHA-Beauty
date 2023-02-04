@@ -2,9 +2,11 @@ const controller = require('./controller');
 const Course = require('app/models/course');
 const Episode = require('app/models/episode');
 const Category = require('app/models/category');
+const Payment = require('app/models/payment');
 const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcrypt');
+const superagent = require('superagent');
 
 
 class courseController extends controller {
@@ -69,16 +71,100 @@ class courseController extends controller {
             if(course.price == 0 && (course.type == 'vip' || course.type == 'free')) {
                 return this.alertAndBack(req, res, {
                     title : 'دقت کنید',
-                    message : 'این دوره مخصوص اعضای ویژه یا رایگان است و قابل خریداری نیست',
+                    text : 'این دوره مخصوص اعضای ویژه یا رایگان است و قابل خریداری نیست',
                     type : 'error',
                     button : 'خیلی خوب'
                 });
             }
 
 
+          // buy proccess
+          // این کد برای تابع Payment  و ایجاد شناسه ی پرداخت و ارجاع کاربر به درگاه پرداخت زرین پال
+          let params = {
+            merchant_id: 'f83cc956-f59f-11e6-889a-005056a205be',
+            amount: course.price,
+            callback_url: 'http://localhost:3000/courses/payment/checker',
+            description: `بابت خرید ${course.title}`,
+            email: req.user.email
+        }
+        superagent.post('https://api.zarinpal.com/pg/v4/payment/request.json')
+            .send(params)
+            .set('cache-control', 'no-cache')
+            .set('content-type', 'application/json')
+            .then(async data => {
+
+                let payment = new Payment({
+                    user: req.user.id,
+                    course: course.id,
+                    resnumber: JSON.parse(data.text).data.authority,
+                    price: course.price
+                });
+                await payment.save();
+
+                res.redirect(`https://www.zarinpal.com/pg/StartPay/${JSON.parse(data.text).data.authority}/ZarinGate`)
+            }).catch(err => res.json(err));
+    } catch (err) {
+        next(err);
+    }
+    }
+
+    async checker(req , res , next) {
+        try {
+                
+                let payment = await Payment.findOne({ resnumber : req.query.Authority}).populate('course').exec();
+
+                if(! payment.course)
+                return this.alertAndBack(req , res , {
+                    title : 'دقت کنید',
+                    text : 'دوره ای که شما پرداخت کرده اید وجود ندارد',
+                    icon : 'error'
+                });
+
+
+                // و این کد هم برای قسمت تصدیق اصالت پس از پرداخت
+                let params = {
+                    merchant_id: 'f83cc956-f59f-11e6-889a-005056a205be',
+                    amount: payment.course.price,
+                    authority: req.query.Authority
+     
+                }
+                superagent.post('https://api.zarinpal.com/pg/v4/payment/verify.json')
+                    .send(params)
+                    .set('cache-control', 'no-cache')
+                    .set('content-type', 'application/json')
+                    .then(async data => {
+                        if (JSON.parse(data.text).data.code === 100) {
+                            payment.set({paymentStatus: true});
+                            req.user.coursesBought.push(payment.course.id);
+                            await payment.save();
+                            await req.user.save();
+                            this.alert(req, {
+                                title: 'با تشکر',
+                                text: 'پرداخت مورد نظر با موفقیت انجام شد.',
+                                icon: 'success',
+                                button: 'بسیار خوب',
+                            })
+                            return res.redirect(payment.course.path());
+                        } else {
+                            return this.alertAndBack(req, res, {
+                                title: 'دقت کنید',
+                                text: 'پرداخت شما با موفقیت انجام نشد',
+                                icon:'error',
+                                button: 'خیلی خوب'
+                            });
+                        }
+                    }).catch(err => {
+                    //  return res.json(err);
+                    return this.alertAndBack(req, res, {
+                        title: 'دقت کنید',
+                        text: 'پرداخت شما با موفقیت انجام نشد',
+                        icon:'error',
+                        button: 'خیلی خوب'
+                    });
+                });
 
         } catch (err) {
-            next(err);
+            next(err);            
         }
     }
 
