@@ -3416,6 +3416,7 @@ p.checkout-coupon.full input[type="submit"] {
     padding: 7px 0 15px;
     border-width: 0 0 1px;
     border-bottom: 1px solid #e5e5e5;
+    direction: rtl;
 }
 .easy2 div.required .control-label::before {
     color: #ef6644;
@@ -3472,6 +3473,7 @@ a.collap {
     display: block;
     padding: 11px 15px;
     text-transform: uppercase;
+    direction: rtl;
 }
 .panel-group.pas7 {
     margin-bottom: 5px;

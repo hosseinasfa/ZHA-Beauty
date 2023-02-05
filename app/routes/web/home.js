@@ -5,6 +5,7 @@ const router = express.Router();
 // Controllers
 const homeController = require('app/http/controller/homeController');
 const courseController = require('app/http/controller/courseController');
+const userController = require('app/http/controller/userController');
 
 //Validators
 const commentValidator = require('app/http/validators/commentValidator');
@@ -36,7 +37,8 @@ router.post('/comment' , redirectIfNotAuthenticated.handle , commentValidator.ha
 router.get('/download/:episode' , courseController.download);
 
 
-
+router.get('/user/panel' , userController.index);
+router.get('/user/panel/history' , userController.history);
 
  
 
