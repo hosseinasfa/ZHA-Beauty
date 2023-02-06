@@ -39,6 +39,14 @@ userSchema.methods.comparePassword = function(password) {
     return bcrypt.compareSync(password , this.password);
 }
 
+userSchema.methods.hasRole = function(roles) { 
+    let result = roles.filter(role => {
+        return this.roles.indexOf(role) > -1;
+    })
+
+    return !! result.length;
+}
+
 userSchema.methods.setRememberToken = function(res) {
     const token = uniqueString();
     res.cookie('remember_token' , token , { maxAge : 1000 * 60 * 60 * 24 * 90 , httpOnly : true , signed : true});

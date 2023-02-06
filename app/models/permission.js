@@ -12,7 +12,12 @@ const permissionSchema = mongoose.Schema({
 permissionSchema.plugin(mongoosePaginate);
 
 
-
+permissionSchema.virtual('roles' , {
+    ref : 'Role',
+    foreignField : 'permissions',
+    localField : '_id',
+    
+});
 
 
 module.exports = mongoose.model('Permission' , permissionSchema);

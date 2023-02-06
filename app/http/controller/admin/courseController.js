@@ -64,6 +64,12 @@ class courseController extends controller {
             let course = await Course.findById(req.params.id);
             if( ! course) this.error('چنین دوره ای وجود ندارد' , 404);
 
+            //using connect-roles in 'app/helpers/gate.js' in courseController without dynamic permissions
+            req.courseUserId = course.user;
+            if( ! req.userCan('edit-courses')) {
+                this.error('شما اجازه دسترسی به این صفحه ار ندارید' , 403);
+            }
+
             let categories = await Category.find({});
     
             return res.render('admin/courses/edit' , { course , categories });
