@@ -15,7 +15,11 @@
 		<link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
 		<!-- all css here -->
 		<!-- bootstrap v3.3.6 css -->
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <% if(req.getLocale() == 'fa') { %>
+            <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <% } else if(req.getLocale() == 'en') { %>
+            <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <% } %>
 		<!-- animate css -->
         <link rel="stylesheet" href="/css/animate.css">
 		<!-- pe-icon-7-stroke -->
@@ -67,7 +71,11 @@
 									<!-- <li><a href="cart.html"><i class="fa fa-shopping-cart"></i>سبد خرید</a></li>
 									<li><a href="wishlist.html"><i class="fa fa-heart"></i>مورد علاقه‌ها</a></li>
 									<li><a href="checkout.html"><i class="fa fa-usd"></i>پیگیری خرید</a></li> -->
-									
+                                    <% if(req.getLocale() == 'fa') { %>
+                                        <li style="padding-right:7px"><a href="/lang/en"><i class="fa fa-lock"></i>English Language</a></li>
+                                    <% } else if(req.getLocale() == 'en') { %>
+                                        <li style="padding-right:7px"><a href="/lang/fa"><i class="fa fa-lock"></i>زبان فارسی</a></li>
+                                    <% } %>
                                     <% if(auth.check) { %>
                                         <li style="padding-right:7px"><a href="/user/panel"><i class="fa fa-lock"></i>پنل کاربری</a></li>
                                         <li><a href="/logout"><i class="fa fa-user"></i>خروج</a></li>

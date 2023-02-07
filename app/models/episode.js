@@ -36,7 +36,7 @@ episodeSchema.methods.typeToPersian = function() {
 }
 
 episodeSchema.methods.download = function(req) {
-    if(! req.isAthenticated()) return '#';
+    if(! req.isAuthenticated()) return '#';
 
     let status = false;
     if(this.type == 'free')

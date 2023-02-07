@@ -110,6 +110,12 @@ class courseController extends controller {
 
     async checker(req , res , next) {
         try {
+
+            if(req.query.Status && req.query.Status !== 'OK')
+                return this.alertAndBack(req, res , {
+                    title : 'دقت کنید',
+                    message : 'پرداخت شما با موفقیت انجام نشد',
+                });
                 
                 let payment = await Payment.findOne({ resnumber : req.query.Authority}).populate('course').exec();
 

@@ -25,8 +25,8 @@
         <div class="col">
             <label for="categories" class="control-label font-weight-bold font-weight-bold">دسته بندی</label>
             <select name="categories" id="categories" class="form-control form-control-chosen" data-placeholder="دسته بندی مورد نظر ..." multiple>
-                <% categories.forEach( cate => { %> 
-                    <option value="<%= cate.id %>"><%= cate.name %></option>
+                <% categories.forEach(cate => { %> 
+                    <option value="<%= cate.id %>"><%= cate.name %></option>                        
                 <% }) %>
             </select>
         </div>
@@ -38,6 +38,13 @@
       </div>
     </div>
     <div class="form-group row">
+        <div class="col">
+            <label for="lang" class="control-label font-weight-bold font-weight-bold">زبان نمایشی</label>
+            <select name="lang" id="lang" class="form-control">
+                <option value="fa" <%= old('lang') == 'fa' ? 'selected' : '' %>>زبان فارسی</option>
+                <option value="en" <%= old('lang') == 'fa' ? 'selected' : '' %> >زبان انگلیسی</option>
+            </select>
+        </div>
         <div class="col">
             <label for="images" class="control-label font-weight-bold">تصویر دوره</label>
             <input type="file" class="form-control" name="images" id="images" placeholder="تصویر مقاله را وارد کنید" >
@@ -60,14 +67,14 @@
     </div>
 </form>
 
+
 <link rel="stylesheet" href="/css/component-chosen.min.css">
 <script src="/ckeditor/ckeditor.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script>
 <script>
-
-    CKEDITOR.replace('body' , {
-        filebrowserUploadUrl : '/admin/upload-image'
-    });
+     CKEDITOR.replace('body' , {
+         filebrowserUploadUrl : '/admin/upload-image'
+     })
 
     $('.form-control-chosen').chosen({});
 </script>

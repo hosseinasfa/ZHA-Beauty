@@ -50,7 +50,7 @@
                                     <div class="blog-desc" style="margin-top: 5%;">
                                         <% if(auth.check) { 
                                              if(course.type == 'vip') {  
-                                                 if(! auth.user.isVip()) { %> 
+                                                 if(auth.user.isVip()) { %> 
                                                     <p style="color: #1bc51b;">شما عضو ویژه هستید بنابراین میتوانید از این دوره استفاده کنید</p>
                                                 <% } else { %>
                                                     <p style="color: red;">برای مشاهده این دوره نیاز است عضویت ویژه را تهیه کنید</p>
