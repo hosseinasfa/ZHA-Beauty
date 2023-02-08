@@ -19,22 +19,14 @@ const userSchema = Schema({
 
 userSchema.plugin(mongoosePaginate);
 
-userSchema.pre('save' , function(next){
+
+userSchema.methods.hashPassword = function(password) {
 
     let salt = bcrypt.genSaltSync(15);
-    let hash = bcrypt.hashSync(this.password , salt);
+    let hash = bcrypt.hashSync(password , salt);
 
-    this.password = hash;
-    next();
-})
-
-userSchema.pre('findOneAndUpdate' , function(next){
-    let salt = bcrypt.genSaltSync(15);
-    let hash = bcrypt.hashSync(this.getUpdate().$set.password , salt);
-
-    this.getUpdate().$set.password = hash;
-    next();
-})
+    return hash;
+}
 
 
 userSchema.methods.comparePassword = function(password) {

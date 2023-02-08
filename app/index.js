@@ -39,6 +39,8 @@ module.exports = class Application{
     /* express config */
     setConfig() {
         require('app/passport/passport-local');
+        require('app/passport/passport-jwt');
+
 
         app.use(express.static(config.layout.public_dir));
         app.set('view engine', config.layout.view_engine);

@@ -8,5 +8,8 @@ module.exports = {
     layout,
     port : process.env.APPLICATION_PORT,
     cookie_secretKey : process.env.COOKIE_SECRETKEY,
-    debug : true
+    debug : true,
+    jwt : {
+        secret_key : 'fas#$GhHff89dS&!L'
+    }
 }

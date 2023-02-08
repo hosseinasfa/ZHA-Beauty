@@ -12,6 +12,12 @@ const commentValidator = require('app/http/validators/commentValidator');
 
 // Middleware
 const redirectIfNotAuthenticated = require('app/http/middleware/redirectIfNotAuthenticated');
+const convertFileToField = require('app/http/middleware/convertFileToField');//for ajax
+
+//Helpers
+const upload = require('app/helpers/uploadImage');//for ajax
+
+
 
 
 router.get('/logout' , (req , res) => {
@@ -44,5 +50,14 @@ router.post('/user/panel/vip/payment' , userController.vipPayment);
 router.get('/user/panel/vip/payment/check' , userController.vipPaymentCheck);
 
  
+//for ajax
+router.get('/ajaxupload' , (req , res , next) => res.render('home/ajaxupload'));
+router.post('/ajaxupload' , upload.single('photo') , convertFileToField.handle , (req , res , next) => {
+  try {
+    res.json({...req.body , ...req.file })
+  } catch (err) {
+    next(err)
+  }
+});
 
 module.exports = router;

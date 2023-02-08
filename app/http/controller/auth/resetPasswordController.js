@@ -48,7 +48,10 @@ async  resetPassword(req , res , next) {
             return this.back(req , res);
         }
     
-        let user = await User.findOneAndUpdate({ email : field.email } , { $set : { password : req.body.password }});
+        let user = await User.findOne({ email : field.email });
+        user.$set({ password : user.hashPassword(req.body.password )});
+        await user.save();
+        
         if(! user) {
             req.flash('errors' , 'تغییر پسوورد انجام نشد. لطفا دوباره تلاش نمایید');
             return this.back(req , res);

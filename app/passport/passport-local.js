@@ -27,9 +27,10 @@ passport.serializeUser(function(user, done) {
 
             const newUser = new User({
                 name : req.body.name,
-                email,
-                password
+                email
             });
+
+            newUser.$set({ password : newUser.hashPassword(password) });
 
             newUser.save(err => {
                 if(err) return done(err , false , 'ثبت نام با موفقیت انجام نشد لطفا دوباره تلاش کنید');
