@@ -71,12 +71,13 @@ async  sendResetLink(req , res , next) {
         transporter.sendMail(info , (err , info) => {
             if(err) return console.log(err);
 
-            console.log('Message Sent : %s' , info.messageId );
+            /* console.log('Message Sent : %s' , info.messageId ); */
 
             this.alert(req , {
                 title : 'دقت کنید',
-                message : 'لینک بازیابی رمز عبور به ایمیل شما ارسال شد',
-                icon : 'success'
+                text : 'لینک بازیابی رمز عبور به ایمیل شما ارسال شد',
+                icon : 'success',
+                button : 'بسیار خوب'
             });
 
             return res.redirect('/');
@@ -85,7 +86,7 @@ async  sendResetLink(req , res , next) {
         
     
         /* req.flash( 'success' , 'ایمیل بازیابی رمز عبور با موفقیت ارسال شد'); */
-        res.redirect('/');
+        
     } catch (err) {
         next(err);
     }
