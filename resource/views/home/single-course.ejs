@@ -85,7 +85,7 @@
                                     <tr>
                                         <td class="sop-cart">
                                             <div class="last-cart l-mrgn wish">
-                                                <a class="las4" href="<%= episode.download(req) %>"> دانلود</a>
+                                                <a class="las4" href="<%= episode.download(req.isAuthenticated() , req.user) %>"> دانلود</a>
                                             </div>
                                         </td>
                                         
