@@ -4,6 +4,7 @@ const router = express.Router();
 // Controllers
 const adminController = require('app/http/controller/admin/adminController');
 const courseController = require('app/http/controller/admin/courseController');
+const blogController = require('app/http/controller/admin/blogController');
 const episodeController = require('app/http/controller/admin/episodeController');
 const commentController = require('app/http/controller/admin/commentController');
 const categoryController = require('app/http/controller/admin/categoryController');
@@ -13,6 +14,7 @@ const roleController = require('app/http/controller/admin/roleController');
 
 // Validators
 const courseValidator = require('app/http/validators/courseValidator');
+const blogValidator = require('app/http/validators/blogValidator');
 const episodeValidator = require('app/http/validators/episodeValidator');
 const categoryValidator = require('app/http/validators/categoryValidator');
 const registerValidator = require('app/http/validators/registerValidator');
@@ -51,6 +53,24 @@ router.put('/courses/:id' ,
     courseController.update
     );
 router.delete('/courses/:id' , courseController.destroy);
+
+// Blog Routes
+router.get('/blogs' , gate.can('show-blogs') , blogController.index);
+router.get('/blogs/create' , blogController.create);
+router.post('/blogs/create' ,
+    upload.single('images') ,
+    convertFileToField.handle ,
+    blogValidator.handle() ,
+    blogController.store
+);
+router.get('/blogs/:id/edit' , blogController.edit);
+router.put('/blogs/:id' ,
+    upload.single('images') ,
+    convertFileToField.handle ,
+    blogValidator.handle() ,
+    blogController.update
+    );
+router.delete('/blogs/:id' , blogController.destroy);
 
 //Users Routes
 router.get('/users' , userController.index);

@@ -23,6 +23,8 @@
                             <a href="<%= comment.course.path() %>"><%= comment.course.title %></a>
                         <% } else if(comment.episode) { %>
                             <a href="#"><%= comment.episode.title %></a>
+                        <% } else if(comment.blog) { %>
+                            <a href="<%= comment.blog.path() %>"><%= comment.blog.title %></a>
                         <% } %>
                     </td>
                     <td><%= comment.comment %></td>

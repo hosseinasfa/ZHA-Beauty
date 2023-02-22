@@ -1386,28 +1386,28 @@
 				</div>
 				<div class="row">
 					<div id="blog" class="owl-carousel product-slider owl-theme re-blog">
-                        <% courses.forEach(course => { %>
+                        <% blogs.forEach(blog => { %>
 						<div class="col-xs-12">
 							<div class="blog-container-inner">
                                 <div class="post-thumb">
-                                    <a href="<%= course.path() %>"><img class="attachment-blog-list wp-post-image" alt="<%= course.thumb %>" src="<%= course.thumb %>"></a>
+                                    <a href="<%= blog.path() %>"><img class="attachment-blog-list wp-post-image" alt="<%= blog.thumb %>" src="<%= blog.thumb %>"></a>
                                 </div>
                                 <div class="visual-inner">
                                     <h2 class="blog-title">
-                                        <a href="<%= course.path() %>"><%= course.title %></a>
+                                        <a href="<%= blog.path() %>"><%= blog.title %></a>
                                     </h2>
                                     <div class="blog-meta">
                                         <span class="post-category">
                                             
-                                            <a rel="category" href="<%= course.path() %>">مردانه</a>
+                                            <a rel="category" href="<%= blog.path() %>">مردانه</a>
                                         </span>
                                         <span class="published">
                                             <i class="fa fa-clock-o"></i>
-                                            <%= date(course.createdAt).format('jD jMMMM jYYYY') %>
+                                            <%= date(blog.createdAt).format('jD jMMMM jYYYY') %>
                                         </span>
-                                        <span class="published2"><%= course.viewCount %> بازدید</span>
+                                        <span class="published2"><%= blog.viewCount %> بازدید</span>
                                     </div>
-                                    <div class="blog-content"><%- course.body.substr(0,100) %></div>
+                                    <div class="blog-content"><%- blog.body.substr(0,100) %></div>
                                 </div>
                             </div>
 						</div>

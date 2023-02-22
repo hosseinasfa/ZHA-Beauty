@@ -17,7 +17,7 @@ let gate = new ConnectRoles({
 });
 
 
-// for using in courseController
+// for using in courseController if you want
 gate.use('edit-courses' , (req) => {
     if(req.courseUserId == req.user.id) return true;
 });

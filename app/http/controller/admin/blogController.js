@@ -1,16 +1,16 @@
 const controller = require('app/http/controller/controller');
-const Course = require('app/models/course');
+const Blog = require('app/models/blog');
 const Category = require('app/models/category');
 const fs = require ('fs');
 const path = require ('path');
 const sharp = require('sharp');
 
-class courseController extends controller {
+class blogController extends controller {
     async index(req , res , next) {
         try {
             let page = req.query.page || 1;
-            let courses = await Course.paginate({} , { page , sort : { createdAt : 1 } , limit : 10});
-            res.render('admin/courses/index' , { title : 'دوره ها' , courses})
+            let blogs = await Blog.paginate({} , { page , sort : { createdAt : 1 } , limit : 10});
+            res.render('admin/blogs/index' , { title : 'دوره ها' , blogs})
         } catch (err) {
             next(err);
         }
@@ -18,7 +18,7 @@ class courseController extends controller {
 
     async create (req , res) {
         let categories = await Category.find({});
-        res.render('admin/courses/create' , { categories })
+        res.render('admin/blogs/create' , { categories })
     }
 
     async store(req , res , next) {
@@ -33,26 +33,24 @@ class courseController extends controller {
        
 
             
-                //create course
+                //create blog
                 let images = this.imageResize(req.file);
-                let { title , body , type , price , tags , lang} = req.body;
+                let { title , body , tags , lang} = req.body;
     
-                let newCourse = new Course ({
+                let newBlog = new Blog ({
                     user : req.user._id,
                     title,
                     slug : this.slug(title),
                     body,
-                    type,
-                    price,
                     images,
                     thumb : images["480"],
                     tags,
                     lang
                 });
     
-            await newCourse.save();
+            await newBlog.save();
     
-            return res.redirect('/admin/courses');
+            return res.redirect('/admin/blogs');
         } catch(err) {
             next(err);
         }
@@ -62,18 +60,14 @@ class courseController extends controller {
         try {
             this.isMongoId(req.params.id);
 
-            let course = await Course.findById(req.params.id);
-            if( ! course) this.error('چنین دوره ای وجود ندارد' , 404);
+            let blog = await Blog.findById(req.params.id);
+            if( ! blog) this.error('چنین دوره ای وجود ندارد' , 404);
 
-            //using connect-roles in 'app/helpers/gate.js' in courseController without dynamic permissions if you want
-            req.courseUserId = course.user;
-            if( ! req.userCan('edit-courses')) {
-                this.error('شما اجازه دسترسی به این صفحه ار ندارید' , 403);
-            }
+
 
             let categories = await Category.find({});
     
-            return res.render('admin/courses/edit' , { course , categories });
+            return res.render('admin/blogs/edit' , { blog , categories });
         } catch (err) {
             next(err);
         }
@@ -96,8 +90,8 @@ class courseController extends controller {
             //check if image exists
             if(req.file) {
                 //remove previous images
-                let course = await Course.findById(req.params.id);
-                Object.values(course.images).forEach(image => fs.unlinkSync(`./public${image}`)); 
+                let blog = await Blog.findById(req.params.id);
+                Object.values(blog.images).forEach(image => fs.unlinkSync(`./public${image}`)); 
                 //set new thumbnail image
                 objForUpdate.image = this.imageResize(req.file);
                 objForUpdate.thumb = objForUpdate.image["480"]; 
@@ -110,11 +104,11 @@ class courseController extends controller {
             delete req.body.images; //delete images from req.body because of error
             objForUpdate.slug = this.slug(req.body.title); // update new slug
     
-            //update course
-            await Course.findByIdAndUpdate(req.params.id , { $set : { ...req.body , ...objForUpdate}})
+            //update blog
+            await Blog.findByIdAndUpdate(req.params.id , { $set : { ...req.body , ...objForUpdate}})
     
             // redirect back
-            return res.redirect('/admin/courses');
+            return res.redirect('/admin/blogs');
         } catch (err) {
             next(err);
         }
@@ -125,20 +119,19 @@ class courseController extends controller {
         try {
             this.isMongoId(req.params.id);
 
-            let course = await Course.findById(req.params.id).populate('episodes').exec();
-            if( ! course) this.error('چنین دوره ای وجود ندارد' , 404);
+            let blog = await Blog.findById(req.params.id);
+            if( ! blog) this.error('چنین دوره ای وجود ندارد' , 404);
     
-            //delete episodes
-            course.episodes.forEach(episode => episode.remove());
+
             
             //delete images
-            Object.values(course.images).forEach(image => fs.unlinkSync(`./public${image}`));
+            Object.values(blog.images).forEach(image => fs.unlinkSync(`./public${image}`));
     
-            //delete courses
-            course.remove();
+            //delete blogs
+            blog.remove();
     
     
-            return res.redirect('/admin/courses');
+            return res.redirect('/admin/blogs');
         } catch (err) {
             next(err);
         }
@@ -174,4 +167,4 @@ class courseController extends controller {
 
 }
 
-module.exports = new courseController();
+module.exports = new blogController();

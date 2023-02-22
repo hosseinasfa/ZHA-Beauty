@@ -1,12 +1,13 @@
 const controller = require('./controller');
 const Course = require('app/models/course');
+const Blog = require('app/models/blog');
 const Comment = require('app/models/comment');
 
 class homeController extends controller {
     async index(req , res , next) {
         try {
-            let courses = await Course.find({ lang : req.getLocale()}).sort({ createdAt : 1 }).limit(8).exec();
-            res.render('home/index' , { courses });
+            let blogs = await Blog.find({ lang : req.getLocale()}).sort({ createdAt : 1 }).limit(8).exec();
+            res.render('home/index' , { blogs });
         } catch (err) {
             next(err);
         }

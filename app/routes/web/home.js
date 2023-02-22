@@ -6,6 +6,7 @@ const router = express.Router();
 const homeController = require('app/http/controller/homeController');
 const courseController = require('app/http/controller/courseController');
 const userController = require('app/http/controller/userController');
+const blogController = require('app/http/controller/blogController');
 
 //Validators
 const commentValidator = require('app/http/validators/commentValidator');
@@ -32,12 +33,16 @@ router.get('/logout' , (req , res) => {
 
 // Home Routes
 router.get('/' , homeController.index);
+
 router.get('/about-us' , homeController.about);
+
 router.get('/courses' , courseController.index);
 router.get('/courses/:course' , courseController.single);
 router.post('/courses/payment' , redirectIfNotAuthenticated.handle , courseController.payment );
 router.get('/courses/payment/checker' , redirectIfNotAuthenticated.handle , courseController.checker );
 
+router.get('/blogs' , blogController.index);
+router.get('/blogs/:blog' , blogController.single);
 
 router.post('/comment' , redirectIfNotAuthenticated.handle , commentValidator.handle() , homeController.comment)
 router.get('/download/:episode' , courseController.download);

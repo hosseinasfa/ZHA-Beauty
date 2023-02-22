@@ -10,7 +10,9 @@ const commentSchema = mongoose.Schema({
     parent : { type : Schema.Types.ObjectId , ref : 'Comment' , default : null },
     approved : { type : Boolean , default : false },
     course : { type : Schema.Types.ObjectId , ref : 'Course' , default : undefined},
+    blog : { type : Schema.Types.ObjectId , ref : 'Blog' , default : undefined},
     episode : { type : Schema.Types.ObjectId , ref : 'Episode' , default : undefined},
+    blog : { type : Schema.Types.ObjectId , ref : 'Blog' , default : undefined},
     comment : { type : String , required  : true}
 
 } , { timestamps : true , toJSON : { virtuals : true } });
@@ -28,7 +30,9 @@ const commentBelong = doc => {
     if(doc.course) 
         return 'Course';
     else if(doc.episode)
-        return 'Episode'; 
+        return 'Episode';
+    else if(doc.blog)
+        return 'Blog'; 
 }
 
 

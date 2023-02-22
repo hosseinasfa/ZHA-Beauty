@@ -4,8 +4,8 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <div class="con-text">
-                            <h2 class="page-title"><%= course.title %></h2>
-                            <p><a href="#">خانه</a> | <%= course.title %></p>
+                            <h2 class="page-title"><%= blog.title %></h2>
+                            <p><a href="#">خانه</a> | <%= blog.title %></p>
                         </div>
                     </div>
                 </div>
@@ -20,8 +20,8 @@
                         <div class="tb-post-item ma-nn">
                             <a href="#">
                                 <div class="tb-thumb">
-                                    <img src="<%= course.images[1080] %>" alt="">
-                                    <span class="tb-publish font-noraure-3"> <%= date(course.createdAt).format('jD jMMMM jYYYY') %></span>
+                                    <img src="<%= blog.images[1080] %>" alt="">
+                                    <span class="tb-publish font-noraure-3"> <%= date(blog.createdAt).format('jD jMMMM jYYYY') %></span>
                                 </div>
                             </a>
                             <div class="tb-content7">
@@ -29,7 +29,7 @@
                                     <span class="author-name">
                                         <i class="fa fa-user"></i>
                                         توسط
-                                        <a href="#"><%= course.user.name %></a>
+                                        <a href="#"><%= blog.user.name %></a>
                                     </span>
                                     <span class="categories">
                                         <i class="fa fa-tag"></i>
@@ -39,130 +39,31 @@
                                     </span>
                                     <span class="comments-number">
                                         <i class="fa fa-comment"></i>
-                                        <a href="#"><%= course.commentCount %> نظر</a>
+                                        <a href="#"><%= blog.commentCount %>  نظر </a>
                                     </span>
                                 </div>
-                                <h4 class="tb-titlel"><%= course.title %></h4>
+                                <h4 class="tb-titlel"><%= blog.title %></h4>
                                 <div class="blog-desc">
-                                    <p><%- course.body %></p>
+                                    <p><%- blog.body %></p>
                                 </div>
                                 
-                                    <div class="blog-desc" style="margin-top: 5%;">
-                                        <% if(auth.check) { 
-                                             if(course.type == 'vip') {  
-                                                 if(auth.user.isVip()) { %> 
-                                                    <p style="color: #1bc51b;">شما عضو ویژه هستید بنابراین میتوانید از این دوره استفاده کنید</p>
-                                                <% } else { %>
-                                                    <p style="color: red;">برای مشاهده این دوره نیاز است عضویت ویژه را تهیه کنید</p>
-                                                <% } 
-                                             } else if(course.type == 'cash') { 
-                                                     if(auth.user.checkLearning(course.id)) { %> 
-                                                        <p style="color: #1bc51b;">شما در این دوره ثبت نام کرده اید.</p>
-                                                        <% } else { %> 
-                                                            <p style="color: red;">برای مشاهده این دوره نیاز است به صورت نقدی دوره را تهیه کنید.</p>
-                                                        <% }
-                                                 } 
 
-                                          } else { %> 
-                                            <p style="color: red;">برای مشاهده این دوره نیاز است ابتدا وارد سایت شوید.</p>
-                                            <% } %> 
-                                    </div>
-                        
-		<!-- wishlist content section start -->
-		<div class="shopping-cart-area nr-wish-area">
-                <div class="row">
-                    <div class="col-md-12 col-xs-12">
-                        <div class="s-cart-all">
-                            <div class="cart-form table-responsive">
-                                <table id="shopping-cart-table" class="data-table cart-table">
-                                    <tr>
-                                        <th class="low5">دانلود</th>
-                                        <th> زمان قسمت</th>
-                                        <th> عنوان قسمت </th>
-                                        <th class="low2"> شماره قسمت</th>
-                                    </tr>
-                                    <% course.episodes.forEach(episode => { %> 
-                                    <tr>
-                                        <td class="sop-cart">
-                                            <div class="last-cart l-mrgn wish">
-                                                <a class="las4" href="<%= episode.download(req.isAuthenticated() , req.user) %>"> دانلود</a>
-                                            </div>
-                                        </td>
-                                        
-                                        <td class="cen">
-                                            <span class="wishlist-in-stock"><%= episode.time %></span>
-                                        </td>
-                                        <td class="sop-cart">
-                                            <div class="tb-product-price font-noraure-3">
-                                                <span class="amount"><%= episode.title %></span>
-                                            </div>
-                                        </td>
-                                        <td class="sop-cart">
-                                            <div class="tb-product-price font-noraure-3">
-                                                <span class="amount"><a href="#"><h4><%= episode.number %></h4></a></span>
-                                            </div>
-                                        </td>
-                                       
-                                    </tr>
-                                    <% }) %>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-		<!-- wishlist  content section end -->
+
                             </div>
                         </div>
 
-                        <%- include(viewPath('layouts/comments') , { subject : course , comments : course.comments }) -%>
+                        <%- include(viewPath('layouts/comments') , { subject : blog , comments : blog.comments }) -%>
 
                  
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
                         <div class="widget_searchform_content active">
-                            <form action="/courses" method="get">
+                            <form action="/blogs" method="get">
                                 <input type="text" value="" name="search" placeholder="جستجو...">
                                 <input type="submit" value="جستجو">
                             </form>
                         </div>
 
-                        <div class="blog-desc" style="margin-top: 5%;">
-                            <% if(auth.check) { 
-                                 if(course.type == 'vip') {  
-                                    if(auth.user.isVip()) { %> 
-                                        <p style="color: #1bc51b;">شما عضو ویژه هستید بنابراین میتوانید از این دوره استفاده کنید</p>
-                                    <% } else { %> 
-                                        <a href="#" style="color: red;">برای مشاهده این دوره نیاز است عضویت ویژه را تهیه کنید.</a>
-                                    <% }
-                                 } else if(course.type == 'cash') { 
-                                    if(auth.user.checkLearning(course.id)) { %>
-                                        <p style="color: rgb(27, 197, 27);">شما در این دوره ثبت نام کرده اید.</p>
-                                    <% } else { %>
-                                            
-                        <div class="zo-recent-posts2">
-                            <h3 class="wg-title">خرید دوره</h3>
-                            <ul dir="rtl">
-                                <li>
-                                    <p>برای خرید این دوره نیاز این دوره را با مبلغ <%= course.price %> تومان خریداری نمایید.</p>
-                                </li>
-                                
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <form class="last-cart-con bd-icon" action="/courses/payment" method="post">
-                                        <input type="hidden" name="course" value="<%= course.id %>">
-                                        <input class="wpcf7" type="submit" value="خرید دوره">
-                                    </form>
-                                </div>
-                            </ul>
-                        </div>
-                        <% }
-                            } else { %> 
-                                    <p style="color: rgb(27, 197, 27);">این دوره رایگان است</p>
-                            <% }
-                              } else { %> 
-                                <a href="/auth/login" style="color: red;">برای مشاهده این دوره نیاز است ابتدا وارد سایت شوید.</a>
-                                <% } %> 
-                        </div>
 
 
                         <div class="zo-recent-posts2 os4">
@@ -170,12 +71,12 @@
                             <ul dir="rtl">
                                 <% categories.forEach( category => { %> 
                                     <li>
-                                        <a href="/courses?category=<%= category.slug %>"><%= category.name %></a>
+                                        <a href="/blogs?category=<%= category.slug %>"><%= category.name %></a>
                                         <% if(category.childs) { %> 
                                             <ul>
                                                 <% category.childs.forEach(cate => { %>
                                                     <li style="margin-right: 10%;"> 
-                                                        <a href="/courses?category=<%= cate.slug %>"><%= cate.name %></a>
+                                                        <a href="/blogs?category=<%= cate.slug %>"><%= cate.name %></a>
                                                     </li>
                                                 <% }) %>
                                             </ul>

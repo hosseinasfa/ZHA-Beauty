@@ -13,11 +13,18 @@ class commentController extends controller {
                         select : 'name'
                     },
                     'course',
+                    'blog',
                     {
                         path : 'episode',
                         populate : [
                             {
                                 path : 'course',
+                                select : 'slug'
+                            }
+                        ],
+                        populate : [
+                            {
+                                path : 'blog',
                                 select : 'slug'
                             }
                         ]
@@ -39,11 +46,18 @@ class commentController extends controller {
                         select : 'name'
                     },
                     'course',
+                    'blog',
                     {
                         path : 'episode',
                         populate : [
                             {
                                 path : 'course',
+                                select : 'slug'
+                            }
+                        ],
+                        populate : [
+                            {
+                                path : 'blog',
                                 select : 'slug'
                             }
                         ]
@@ -78,10 +92,10 @@ class commentController extends controller {
         try {
             this.isMongoId(req.params.id);
 
-            let comment = await Comment.findById(req.params.id).exec();
+            let comment = await Comment.findById(req.params.id).populate('belongTo').exec();
             if( ! comment) this.error('چنین نظری وجود ندارد' , 404);
 
-          
+            await comment.belongTo.inc('commentCount' , -1);
     
             //delete episodes
             comment.remove();
