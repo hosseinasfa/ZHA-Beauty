@@ -3,9 +3,10 @@
         <section class="slider-main-area">
             <div class="main-slider an-si">
                 <div class="bend niceties preview-2 hm-ver-1">
-                    <div id="ensign-nivoslider-2" class="slides">	
-                        <img src="img/slider/1.png" alt="" title="#slider-direction-3"  />
-                        <img src="img/slider/2.png" alt="" title="#slider-direction-1"  />
+                    <div id="ensign-nivoslider-2" class="slides">
+                        <% sliders.forEach(slider => { %>	
+                        <img src="<%= slider.images['original'] %>" alt="" title="#slider-direction-3"  />
+                        <% }) %>
                     </div>
                     <!-- direction 1 -->
                     <div id="slider-direction-3" class="t-cn slider-direction Builder">
@@ -18,42 +19,42 @@
                             <div class="layer-2">
                                 <h2 class="title6"><%= __('description') %></h2>
                             </div>
-                            <!-- layer 2 -->
-                            <div class="layer-2">
+                            
+<!--                             <div class="layer-2">
                                 <p class="title0">تخفیف تا 40%</p>
                             </div>
-                            <!-- layer 3 -->
+                            
                             <div class="layer-3">
                                 <a class="min1" href="#">خرید</a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
-                    <div id="slider-direction-1" class="t-cn slider-direction Builder">
+<!--                     <div id="slider-direction-1" class="t-cn slider-direction Builder">
                         <div class="slide-all slide2">
-                            <!-- layer 1 -->
+                            
                             <div class="layer-1">
                                 <h2 class="title5">محصولات جدید</h2>
                             </div>
-                            <!-- layer 2 -->
+                            
                             <div class="layer-2">
                                 <h2 class="title6">آنچه شیک پوشان به تن دارند.</h2>
                             </div>
-                            <!-- layer 2 -->
+                            
                             <div class="layer-2">
                                 <p class="title0">تخفیف تا 40%</p>
                             </div>
-                            <!-- layer 3 -->
+                            
                             <div class="layer-3">
                                 <a class="min1" href="#">خرید</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 			    </div>
             </div>
         </section>
 		<!-- slider section end -->
         <!-- collection section start -->
-		<div class="banner-area">
+<!-- 		<div class="banner-area">
             <div class="container">
                 <div class="section-padding1">
                     <div class="row">
@@ -126,10 +127,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 		<!-- collection section end -->
         <!-- new-products section start -->
-		<section class="featured-products single-products section-padding-top">
+<!-- 		<section class="featured-products single-products section-padding-top">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12">
@@ -189,7 +190,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -219,7 +220,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -249,7 +250,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -282,7 +283,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -312,10 +313,10 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 						</div>
 					</div>
-					<!-- all shop product end -->
+					
 					<div class="tab-pane  fade in" id="clothings">
 						<div id="tab-carousel-2" class="owl-carousel product-slider owl-theme">
 							<div class="col-xs-12">
@@ -347,7 +348,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -377,7 +378,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -410,7 +411,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -440,7 +441,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -473,10 +474,10 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 						</div>
 					</div>
-					<!-- clothings product end -->
+					
 					<div class="tab-pane  fade in" id="shoes">
 						<div id="tab-carousel-3" class="owl-carousel product-slider owl-theme">
 							<div class="col-xs-12">
@@ -511,7 +512,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -541,7 +542,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -574,7 +575,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -607,7 +608,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -637,10 +638,10 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 						</div>
 					</div>
-					<!-- shoes product end -->
+					
 					<div class="tab-pane  fade in" id="bags">
 						<div id="tab-carousel-4" class="owl-carousel product-slider owl-theme">
 							<div class="col-xs-12">
@@ -675,7 +676,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -705,7 +706,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -738,7 +739,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -768,7 +769,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+						
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -798,10 +799,10 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 						</div>
 					</div>
-					<!-- bags product end -->
+					
 					<div class="tab-pane  fade in" id="accessories">
 						<div id="tab-carousel-5" class="owl-carousel product-slider owl-theme">
 							<div class="col-xs-12">
@@ -836,7 +837,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -869,7 +870,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -899,7 +900,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -929,7 +930,7 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 							<div class="col-xs-12">
 								<div class="single-product">
                                     <div class="product-img">
@@ -962,16 +963,16 @@
                                     </div>
                                 </div>
 							</div>
-							<!-- single product end -->
+							
 						</div>
 					</div>
-					<!-- accessories product end -->
+					
 				</div>
 			</div>
-		</section>
+		</section> -->
 		<!-- new-products section end -->
         <!-- testimonials section start -->
-		<section class="testimonials stripe-parallax-bg" data-parallax-speed="0.5">
+<!-- 		<section class="testimonials stripe-parallax-bg" data-parallax-speed="0.5">
 			<div class="re-testimonials re-testimonials2">
                 <div class="container">
                     <div class="row">
@@ -1079,10 +1080,10 @@
                     </div>
                 </div>
 			</div>
-		</section>
+		</section> -->
        <!-- testimonials section end -->
        <!-- new-products section start -->
-		<section class="new-products single-products section-padding-top re-new-product re-new-product2">
+<!-- 		<section class="new-products single-products section-padding-top re-new-product re-new-product2">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12">
@@ -1369,7 +1370,7 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section> -->
 		<!-- new-products section end -->
         <!-- blog section start -->
 		<section class="blog section-padding-top">
@@ -1377,7 +1378,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="section-title">
-							<h3>تازه های خبر</h3>
+							<h3>مقالات</h3>
 							<div class="section-icon">
                                 <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                             </div>
@@ -1399,7 +1400,7 @@
                                     <div class="blog-meta">
                                         <span class="post-category">
                                             
-                                            <a rel="category" href="<%= blog.path() %>">مردانه</a>
+                                            <a rel="category" href="<%= blog.path() %>">نویسنده : <%= blog.user.name %></a>
                                         </span>
                                         <span class="published">
                                             <i class="fa fa-clock-o"></i>
@@ -1418,8 +1419,9 @@
 			</div>
 		</section>
 		<!-- blog section end -->
+
         <!-- quick view start -->
-        <div class="quick-view modal fade in" id="quick-view">
+<!--         <div class="quick-view modal fade in" id="quick-view">
             <div class="container">
                 <div class="row">
                     <div id="view-gallery" class="owl-carousel product-slider owl-theme">
@@ -1545,7 +1547,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- single-product item end -->
+                        
                         <div class="col-xs-12">
                             <div class="d-table">
                                 <div class="d-tablecell">
@@ -1668,11 +1670,11 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- single-product item end -->
+                        
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 		<!-- quick view end -->
         <!-- brand section start -->
        <section class="section-padding-top">
@@ -1729,7 +1731,7 @@
        </section>
        <!-- brand section end -->
        <!-- service section start -->
-       <section class="re-section-padding">
+<!--        <section class="re-section-padding">
 			<div class="service section-padding">
 				<div class="container">
 					<div class="row text-center">
@@ -1757,6 +1759,6 @@
 					</div>
 				</div>
 			</div>
-       </section>
+       </section> -->
        <!-- service section end -->
 

@@ -11,6 +11,7 @@ const categoryController = require('app/http/controller/admin/categoryController
 const userController = require('app/http/controller/admin/userController');
 const permissionController = require('app/http/controller/admin/permissionController');
 const roleController = require('app/http/controller/admin/roleController');
+const sliderController = require('app/http/controller/admin/sliderController');
 
 // Validators
 const courseValidator = require('app/http/validators/courseValidator');
@@ -20,6 +21,8 @@ const categoryValidator = require('app/http/validators/categoryValidator');
 const registerValidator = require('app/http/validators/registerValidator');
 const permissionValidator = require('app/http/validators/permissionValidator');
 const roleValidator = require('app/http/validators/roleValidator');
+const sliderValidator = require('app/http/validators/sliderValidator');
+const userValidator = require('app/http/validators/userValidator');
 
 //Helpers
 const upload = require('app/helpers/uploadImage');
@@ -37,7 +40,7 @@ router.use((req , res , next) => {
 router.get('/' , adminController.index);
 
 // Course Routes
-router.get('/courses' , gate.can('show-courses') , courseController.index);
+router.get('/courses' , courseController.index);
 router.get('/courses/create' , courseController.create);
 router.post('/courses/create' ,
     upload.single('images') ,
@@ -75,6 +78,9 @@ router.delete('/blogs/:id' , blogController.destroy);
 //Users Routes
 router.get('/users' , userController.index);
 router.get('/users/create' , userController.create);
+router.get('/users/edit' , userController.edit);
+router.get('/users/:id/edit' , userController.edit);
+router.put('/users/:id' ,userValidator.handle() ,userController.update);
 router.post('/users' , registerValidator.handle() , userController.store);
 router.delete('/users/:id' , userController.destroy);
 router.get('/users/:id/toggleadmin' , userController.toggleadmin);
@@ -121,6 +127,23 @@ router.get('/comments' , gate.can('show-comments') , commentController.index );
 router.put('/comments/:id/approved' ,commentController.update);
 router.delete('/comments/:id' , commentController.destroy);
 
+//Slider Route
+router.get('/sliders' , gate.can('show-sliders') , courseController.index);
+router.get('/sliders/create' , courseController.create);
+router.post('/sliders/create' ,
+    upload.single('images') ,
+    convertFileToField.handle ,
+    courseValidator.handle() ,
+    courseController.store
+);
+router.get('/sliders/:id/edit' , courseController.edit);
+router.put('/sliders/:id' ,
+    upload.single('images') ,
+    convertFileToField.handle ,
+    courseValidator.handle() ,
+    courseController.update
+    );
+router.delete('/sliders/:id' , courseController.destroy);
 
 router.post('/upload-image' , upload.single('upload') , adminController.uploadImage); //upload image in ckeditor
 

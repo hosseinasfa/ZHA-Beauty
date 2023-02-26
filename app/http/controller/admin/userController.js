@@ -89,11 +89,10 @@ class userController extends controller {
         try {
             this.isMongoId(req.params.id);
 
-            let category = await Category.findById(req.params.id);
-            let categories = await Category.find({ parent : null });
-            if( ! category) this.error('چنین دسته ای وجود ندارد' , 404);
+            let user = await User.findById(req.params.id);
+            if( ! user) this.error('چنین کاربری وجود ندارد' , 404);
     
-            return res.render('admin/categories/edit' , { category , categories });
+            return res.render('admin/users/edit' , { user });
         } catch (err) {
             next(err);
         }
@@ -104,18 +103,21 @@ class userController extends controller {
             let status = await this.validationData(req);
             if(! status) return this.back(req,res);
 
-            let { name , parent } = req.body;
+            let { name , email } = req.body;
 
             //update category
-            await Category.findByIdAndUpdate(req.params.id , { $set : { 
+            await User.findByIdAndUpdate(req.params.id , { $set : { 
                 name,
-                slug : this.slug(name),
-                parent : parent !== 'none' ? parent : null
-             }})
+                email
+             }});
+
+            let user = await User.findOne({ email });
+            user.$set({ password : user.hashPassword(req.body.password )});
+            await user.save();
 
 
             // redirect back
-            return res.redirect('/admin/categories');
+            return res.redirect('/admin/users');
         } catch (err) {
             next(err);
         }
