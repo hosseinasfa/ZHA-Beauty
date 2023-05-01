@@ -119,13 +119,19 @@ class blogController extends controller {
         try {
             this.isMongoId(req.params.id);
 
-            let blog = await Blog.findById(req.params.id);
+            let blog = await Blog.findById(req.params.id).populate('comments').exec();;
             if( ! blog) this.error('چنین دوره ای وجود ندارد' , 404);
     
+            //delete comments
+            blog.comments.forEach(comment => comment.remove());
 
+            // course.episodes.forEach(episode => episode.remove());
             
             //delete images
             Object.values(blog.images).forEach(image => fs.unlinkSync(`./public${image}`));
+
+            
+
     
             //delete blogs
             blog.remove();
