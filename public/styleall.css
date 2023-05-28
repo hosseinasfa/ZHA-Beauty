@@ -1,25 +1,25 @@
 ﻿
 
-/*Fonts ---------------------------------------------------------------------------------------------------- */
+/*fonts ---------------------------------------------------------------------------------------------------- */
 /*---------------------------------------------------------------------------------------------------- */
 
 @font-face {
     font-family: 'btitr';
-    src: url('Fonts/Titr/BTitr.eot');
-    src: url('Fonts/Titr/BTitr.eot?#iefix') format('embedded-opentype'),
-         url('Fonts/Titr/BTitr.woff') format('woff'),
-         url('Fonts/Titr/BTitr.ttf') format('truetype');
+    src: url('fonts/Titr/BTitr.eot');
+    src: url('fonts/Titr/BTitr.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Titr/BTitr.woff') format('woff'),
+         url('fonts/Titr/BTitr.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
 	font-family: 'yekan';
-	src: url('Fonts/Yekan/BYekan.eot?-wwn5ej');
-	src: url('Fonts/Yekan/BYekan.eot?#iefix-wwn5ej') format('embedded-opentype'),
-	url('Fonts/Yekan/BYekan.woff?-wwn5ej') format('woff'),
-	url('Fonts/Yekan/BYekan.ttf?-wwn5ej') format('truetype'),
-	url('Fonts/Yekan/BYekan.svg?-wwn5ej#icomoon') format('svg');
+	src: url('fonts/Yekan/BYekan.eot?-wwn5ej');
+	src: url('fonts/Yekan/BYekan.eot?#iefix-wwn5ej') format('embedded-opentype'),
+	url('fonts/Yekan/BYekan.woff?-wwn5ej') format('woff'),
+	url('fonts/Yekan/BYekan.ttf?-wwn5ej') format('truetype'),
+	url('fonts/Yekan/BYekan.svg?-wwn5ej#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -27,78 +27,78 @@
 
 @font-face{
   font-family: 'elham';
-    src: url('Fonts/Elham/IRElham.eot');
-    src: url('Fonts/Elham/IRElham.eot?#iefix') format('embedded-opentype'),
-         url('Fonts/Elham/IRElham.woff') format('woff'),
-         url('Fonts/Elham/IRElham.ttf') format('truetype')
+    src: url('fonts/Elham/IRElham.eot');
+    src: url('fonts/Elham/IRElham.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Elham/IRElham.woff') format('woff'),
+         url('fonts/Elham/IRElham.ttf') format('truetype')
 }
 
 
 @font-face{
   font-family: 'homa';
-    src: url('Fonts/Homa/IRHoma.eot');
-    src: url('Fonts/Homa/IRHoma.eot?#iefix') format('embedded-opentype'),
-         url('Fonts/Homa/IRHoma.woff') format('woff'),
-         url('Fonts/Homa/IRHoma.ttf') format('truetype')
+    src: url('fonts/Homa/IRHoma.eot');
+    src: url('fonts/Homa/IRHoma.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Homa/IRHoma.woff') format('woff'),
+         url('fonts/Homa/IRHoma.ttf') format('truetype')
 }
 
 @font-face{
   font-family: 'koodak';
-    src: url('Fonts/Koodak/IRKoodak.eot');
-    src: url('Fonts/Koodak/IRKoodak.eot?#iefix') format('embedded-opentype'),
-         url('Fonts/Koodak/IRKoodak.woff') format('woff'),
-         url('Fonts/Koodak/IRKoodak.ttf') format('truetype')
+    src: url('fonts/Koodak/IRKoodak.eot');
+    src: url('fonts/Koodak/IRKoodak.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Koodak/IRKoodak.woff') format('woff'),
+         url('fonts/Koodak/IRKoodak.ttf') format('truetype')
 }
 
 @font-face{
   font-family: 'trafik';
-    src: url('Fonts/Trafik/IRTerafik.eot');
-    src: url('Fonts/Trafik/IRTerafik.eot?#iefix') format('embedded-opentype'),
-         url('Fonts/Trafik/IRTerafik.woff') format('woff'),
-         url('Fonts/Trafik/IRTerafik.ttf') format('truetype')
+    src: url('fonts/Trafik/IRTerafik.eot');
+    src: url('fonts/Trafik/IRTerafik.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Trafik/IRTerafik.woff') format('woff'),
+         url('fonts/Trafik/IRTerafik.ttf') format('truetype')
 }
 
 @font-face{
   font-family: 'dastnevis';
-    src: url('Fonts/DastNevis/IRDastNevis.eot');
-    src: url('Fonts/DastNevis/IRDastNevis.eot?#iefix') format('embedded-opentype'),
-         url('Fonts/DastNevis/IRDastNevis.woff') format('woff'),
-         url('Fonts/DastNevis/IRDastNevis.ttf') format('truetype')
+    src: url('fonts/DastNevis/IRDastNevis.eot');
+    src: url('fonts/DastNevis/IRDastNevis.eot?#iefix') format('embedded-opentype'),
+         url('fonts/DastNevis/IRDastNevis.woff') format('woff'),
+         url('fonts/DastNevis/IRDastNevis.ttf') format('truetype')
 }
 
 @font-face{
   font-family: 'nazanin';
-    src: url('Fonts/Nazanin/IRNazanin.eot');
-    src: url('Fonts/Nazanin/IRNazanin.eot?#iefix') format('embedded-opentype'),
-         url('Fonts/Nazanin/IRNazanin.woff') format('woff'),
-         url('Fonts/Nazanin/IRNazanin.ttf') format('truetype')
+    src: url('fonts/Nazanin/IRNazanin.eot');
+    src: url('fonts/Nazanin/IRNazanin.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Nazanin/IRNazanin.woff') format('woff'),
+         url('fonts/Nazanin/IRNazanin.ttf') format('truetype')
 }
 
 @font-face {
     font-family: 'bmitrabold';
-    src: url('Fonts/MitraBold/BMitraBold.eot');
-    src: url('Fonts/MitraBold/BMitraBold.eot?#iefix') format('embedded-opentype'),
-         url('Fonts/MitraBold/BMitraBold.woff') format('woff'),
-         url('Fonts/MitraBold/BMitraBold.ttf') format('truetype');
+    src: url('fonts/MitraBold/BMitraBold.eot');
+    src: url('fonts/MitraBold/BMitraBold.eot?#iefix') format('embedded-opentype'),
+         url('fonts/MitraBold/BMitraBold.woff') format('woff'),
+         url('fonts/MitraBold/BMitraBold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
 	font-family: 'adobearabic';
-	src: url('Fonts/AdobeArabic/AdobeArabic.eot?-wwn5ej');
-	src: url('Fonts/AdobeArabic/AdobeArabic.eot?#iefix-wwn5ej') format('embedded-opentype'),
-	url('Fonts/AdobeArabic/AdobeArabic.woff?-wwn5ej') format('woff'),
-	url('Fonts/AdobeArabic/AdobeArabic.ttf?-wwn5ej') format('truetype'),
-	url('Fonts/AdobeArabic/AdobeArabic.svg?-wwn5ej#icomoon') format('svg');
+	src: url('fonts/AdobeArabic/AdobeArabic.eot?-wwn5ej');
+	src: url('fonts/AdobeArabic/AdobeArabic.eot?#iefix-wwn5ej') format('embedded-opentype'),
+	url('fonts/AdobeArabic/AdobeArabic.woff?-wwn5ej') format('woff'),
+	url('fonts/AdobeArabic/AdobeArabic.ttf?-wwn5ej') format('truetype'),
+	url('fonts/AdobeArabic/AdobeArabic.svg?-wwn5ej#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
     font-family: 'yekaneng';
-    src: url(Fonts/YekanEng/web_Yekan.woff);
-    src: url(Fonts/YekanEng/web_Yekan.eot?#iefix) format("embedded-opentype"),url(Fonts/YekanEng/web_Yekan.woff) format("woff"),url(Fonts/YekanEng/web_Yekan.ttf) format("truetype"),url(Fonts/YekanEng/web_Yekan.svg#BYekan) format("svg");
+    src: url(fonts/YekanEng/web_Yekan.woff);
+    src: url(fonts/YekanEng/web_Yekan.eot?#iefix) format("embedded-opentype"),url(fonts/YekanEng/web_Yekan.woff) format("woff"),url(fonts/YekanEng/web_Yekan.ttf) format("truetype"),url(fonts/YekanEng/web_Yekan.svg#BYekan) format("svg");
     font-weight: normal;
     font-style: normal;
 }
