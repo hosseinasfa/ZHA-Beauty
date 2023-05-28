@@ -28,7 +28,7 @@ class blogController extends controller {
                     query.categories = { $in : [ category.id ]}
             }
                 
-            let blogs = Blog.find({ ...query});
+            let blogs = Blog.find({ ...query}).populate('user');
 
             if(req.query.order)
                 blogs.sort({ createdAt : -1 });

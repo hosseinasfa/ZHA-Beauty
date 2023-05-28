@@ -1,0 +1,67 @@
+        <!-- pages-title-start -->
+        <section class="contact-img-area" style="background-image: url(img/bg-banner/bg-pagetitle.jpg)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="con-text">
+                            <h2 class="page-title">اخبار</h2>
+                            <p><a href="#">خانه</a> | اخبار</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+		<!-- pages-title-end -->
+		<!-- Blog content section start -->
+		<section class="blog-area">
+            <div class="container">
+                <% if(blogs.length) { %>
+                <div class="row">
+                    <% blogs.forEach(blog => { %>
+                   <div class="col-lg-10 col-lg-offset-1 col-md-8 col-sm-7 col-xs-12">
+                       <div class="tb-post-item" dir="rtl">
+                           <a href="<%= blog.path() %>">
+                               <div class="tb-thumb">
+                                   <img src="<%= blog.images[1080] %>" alt="<%= blog.images[1080] %>">
+                                   <!-- <span class="tb-publish font-noraure-3">25 شهریور</span> -->
+                               </div>
+                           </a>
+                           <div class="tb-content7">
+                               <a href="<%= blog.path() %>"><h4 class="tb-titlel"><%= blog.title %></h4></a>
+                               <div class="blog-info">
+                                   <span class="author-name">
+                                       <i class="fa fa-user"></i>
+                                       توسط
+                                       <a href="#"><%= blog.user.name %></a>
+                                   </span>
+                                   <span class="categories">
+                                       <i class="fa fa-tag"></i>
+                                       <a href="#"><%= blog.tags %></a>
+                                   </span>
+                                   <span class="comments-number">
+                                       <i class="fa fa-comment"></i>
+                                       <a href="#"><%= blog.commentCount %> نظر</a>
+                                   </span>
+                               </div>
+                               <div class="tb-excerpt" style="direction:rtl;text-align:justify"><%- blog.body.substr(0,100) %></div>
+                               <a class="blog7" href="<%= blog.path() %>">ادامه مطلب</a>
+                           </div>
+                       </div>
+                       <!-- <nav class="pagination tb-pagination text-right">
+                            <span class="page-numbers current">1</span>
+                            <a class="page-numbers" href="#">2</a>
+                            <a class="next page-numbers" href="#"><i class="fa fa-angle-right"></i></a>
+                        </nav> -->
+                    </div>
+                    <% }) %>
+                </div>
+                <% } else { %>
+                    <div class="row" style="text-align: center;">
+                        <h2>دوره ای یافت نشد</h2>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+		<!-- Blog content section end -->
+
+       <%- include(viewPath('layouts/pagination') ,{ pagination : blogs}) %>

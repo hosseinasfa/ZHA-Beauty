@@ -3842,7 +3842,7 @@ a.o-back-to:hover {
   background: #686868 none repeat scroll 0 0;
   color: #ffffff;
   display: inline-block;
-  left: 0;
+  right: 0;
   line-height: 24px;
   padding: 10px 20px;
   position: absolute;
