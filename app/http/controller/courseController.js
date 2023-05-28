@@ -5,7 +5,7 @@ const Category = require('app/models/category');
 const Payment = require('app/models/payment');
 const path = require('path');
 const fs = require('fs');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const superagent = require('superagent');
 
 

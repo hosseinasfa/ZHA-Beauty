@@ -3,7 +3,7 @@ const Blog = require('app/models/blog');
 const Category = require('app/models/category');
 const path = require('path');
 const fs = require('fs');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 
 class blogController extends controller {
