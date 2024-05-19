@@ -57,25 +57,15 @@
 			<div class="">
 				<div class="container">
 					<div class="row">
-						<!-- <div class="col-md-6 col-sm-4" style="margin-top: 1%;">
+						<!-- <div class="col-md-6 col-xs-12" style="margin-top: 2%;">
 							<div class="left-header clearfix">
 								<ul>
-									<li style="float: left; margin-left: 10px; padding-left: 10px;"><p style="font-family:Tahoma"><i class="fa fa-phone" aria-hidden="true"></i>0218888888</p></li>
-                                    <li style="float: left; margin-left: 10px; padding-left: 10px;" class="hd-none"><p><i class="fa fa-clock-o" aria-hidden="true"></i>ایام هفته : 09:00-21:00</p></li>
 								</ul>
 							</div>
 						</div> -->
-						<div class="col-md-6 col-sm-8 float" style="margin-top: 1%; float : right">
+						<div class="col-md-6 col-md-offset-6 col-sm-12 col-xs-12" style="margin-top: 2%">
 							<div class="right-header">
 								<ul>
-									<!-- <li><a href="cart.html"><i class="fa fa-shopping-cart"></i>سبد خرید</a></li>
-									<li><a href="wishlist.html"><i class="fa fa-heart"></i>مورد علاقه‌ها</a></li>
-									<li><a href="checkout.html"><i class="fa fa-usd"></i>پیگیری خرید</a></li> -->
-                                    <% if(req.getLocale() == 'fa') { %>
-                                        <li style="padding-right:7px"><a href="/lang/en"><i class="fa fa-lock"></i>English Language</a></li>
-                                    <% } else if(req.getLocale() == 'en') { %>
-                                        <li style="padding-right:7px"><a href="/lang/fa"><i class="fa fa-lock"></i>زبان فارسی</a></li>
-                                    <% } %>
                                     <% if(auth.check) { %>
                                         <li style="padding-right:7px"><a href="/admin"><i class="fa fa-lock"></i>داشبورد</a></li>
                                         <li style="padding-right:7px"><a href="/user/panel"><i class="fa fa-lock"></i>پنل کاربری</a></li>
@@ -104,6 +94,13 @@
 							    <div class="mainmenu clearfix hidden-sm hidden-xs">
                                     <nav>
                                         <ul>
+                                            <% if(req.getLocale() == 'fa') { %>
+                                            <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><a href="/lang/en">English Language</a>
+                                            </li>
+                                            <% } else if(req.getLocale() == 'en') { %>
+                                            <li><a href="/lang/fa">زبان فارسی</a>
+                                            </li>
+                                            <% } %>
                                             <li><a href="/">خانه</a>
                                             </li>
                                             <li><a href="/courses">فروشگاه</a>
@@ -150,10 +147,17 @@
                                     <div class="mobile-menu">
                                         <nav id="dropdown">
                                             <ul>
+                                                <% if(req.getLocale() == 'fa') { %>
+                                                    <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><a href="/lang/en">English Language</a>
+                                                    </li>
+                                                    <% } else if(req.getLocale() == 'en') { %>
+                                                    <li><a href="/lang/fa">زبان فارسی</a>
+                                                    </li>
+                                                    <% } %>
                                                 <li><a href="/">خانه</a>
                                                     
                                                 </li>
-                                                <li><a href="/corses">فروشگاه</a>
+                                                <li><a href="/courses">فروشگاه</a>
                                                     
                                                 </li>
                                                
