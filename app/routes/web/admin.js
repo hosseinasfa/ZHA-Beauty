@@ -128,22 +128,22 @@ router.put('/comments/:id/approved' ,commentController.update);
 router.delete('/comments/:id' , commentController.destroy);
 
 //Slider Route
-router.get('/sliders' , gate.can('show-sliders') , courseController.index);
-router.get('/sliders/create' , courseController.create);
+router.get('/sliders' , gate.can('show-sliders') , sliderController.index);
+router.get('/sliders/create' , sliderController.create);
 router.post('/sliders/create' ,
     upload.single('images') ,
     convertFileToField.handle ,
-    courseValidator.handle() ,
+    sliderValidator.handle() ,
     courseController.store
 );
-router.get('/sliders/:id/edit' , courseController.edit);
+router.get('/sliders/:id/edit' , sliderController.edit);
 router.put('/sliders/:id' ,
     upload.single('images') ,
     convertFileToField.handle ,
-    courseValidator.handle() ,
-    courseController.update
+    sliderValidator.handle() ,
+    sliderController.update
     );
-router.delete('/sliders/:id' , courseController.destroy);
+router.delete('/sliders/:id' , sliderController.destroy);
 
 router.post('/upload-image' , upload.single('upload') , adminController.uploadImage); //upload image in ckeditor
 

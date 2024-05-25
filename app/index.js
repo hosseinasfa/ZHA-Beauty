@@ -33,7 +33,8 @@ module.exports = class Application{
 
     async setMongoConnection(){
         mongoose.set('strictQuery', false);
-        await mongoose.connect(config.database.url);
+        await mongoose.connect(config.database.url).then(() => console.log('MongoDB connected'))
+        .catch(err => console.log(err));;
     }
 
     /* express config */
