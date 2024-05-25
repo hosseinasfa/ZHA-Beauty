@@ -134,7 +134,7 @@ router.post('/sliders/create' ,
     upload.single('images') ,
     convertFileToField.handle ,
     sliderValidator.handle() ,
-    courseController.store
+    sliderController.store
 );
 router.get('/sliders/:id/edit' , sliderController.edit);
 router.put('/sliders/:id' ,
